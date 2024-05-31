@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '/app/routes/app_pages.dart';
 import '/flavors/build_config.dart';
 import '/flavors/env_config.dart';
+import 'core/values/app_colors.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -24,6 +25,21 @@ class _MyAppState extends State<MyApp> {
       getPages: AppPages.routes,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: _getSupportedLocal(),
+      theme: ThemeData(
+        primarySwatch: AppColors.colorPrimarySwatch,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        brightness: Brightness.light,
+        primaryColor: AppColors.colorPrimary,
+        textTheme: const TextTheme(
+          labelLarge: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        fontFamily: 'Inter',
+      ),
+      debugShowCheckedModeBanner: false,
     );
   }
 

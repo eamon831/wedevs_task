@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:wedevs_task/app/core/base/base_view.dart';
+import '/app/pages/splash/controllers/splash_controller.dart';
 
-class SplashViews extends StatelessWidget {
-  const SplashViews({super.key});
+class SplashViews extends BaseView<SplashController> {
+  SplashViews({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
+  PreferredSizeWidget? appBar(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget body(BuildContext context) {
+    return Container();
   }
 }
