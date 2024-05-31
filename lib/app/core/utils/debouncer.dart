@@ -9,12 +9,17 @@ class Debouncer {
   VoidCallback? action;
   Timer? _timer;
 
-  Debouncer({this.milliseconds = AppValues.defaultDebounceTimeInMilliSeconds});
+  Debouncer({
+    this.milliseconds = AppValues.defaultDebounceTimeInMilliSeconds,
+  });
 
-  run(VoidCallback action) {
+  Future<void> run(VoidCallback action) async {
     if (_timer != null) {
       _timer!.cancel();
     }
-    _timer = Timer(Duration(milliseconds: milliseconds), action);
+    _timer = Timer(
+      Duration(milliseconds: milliseconds),
+      action,
+    );
   }
 }
