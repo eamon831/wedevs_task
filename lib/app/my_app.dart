@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:get/get.dart';
 import '/app/routes/app_pages.dart';
 import '/flavors/build_config.dart';
@@ -20,6 +22,15 @@ class _MyAppState extends State<MyApp> {
       title: _envConfig.appName,
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: _getSupportedLocal(),
     );
+  }
+
+  List<Locale> _getSupportedLocal() {
+    return [
+      const Locale('en', ''),
+      const Locale('bn', ''),
+    ];
   }
 }
