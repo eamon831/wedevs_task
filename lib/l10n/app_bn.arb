@@ -7,9 +7,11 @@
    "signIn": "সাইন ইন",
     "signUp": "নিবন্ধন করুন",
    "email": "ইমেইল",
-   "passWord": "পাসওয়ার্ড",
+   "password": "পাসওয়ার্ড",
+   "confirmPassword": "পাসওয়ার্ড নিশ্চিত করুন",
    "forgotPassword": "পাসওয়ার্ড ভুলে গেছেন?",
     "login": "লগইন",
    "createNewAccount": "নতুন অ্যাকাউন্ট তৈরি করুন",
-   "underDevelopment": "উন্নতির অধীনে"
+   "underDevelopment": "উন্নতির অধীনে",
+   "name": "নাম"
 }
