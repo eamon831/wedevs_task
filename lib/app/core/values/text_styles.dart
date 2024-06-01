@@ -2,16 +2,32 @@ import 'package:flutter/material.dart';
 
 import '/app/core/values/app_colors.dart';
 
+const defaultFontFamily = 'Roboto';
+
 const centerTextStyle = TextStyle(
   fontSize: 28,
   fontWeight: FontWeight.bold,
   color: AppColors.centerTextColor,
 );
 
+const buttonTextStyle = TextStyle(
+  fontSize: 17,
+  fontWeight: FontWeight.w500,
+  color: AppColors.buttonTextColor,
+  fontFamily: defaultFontFamily,
+);
+
 const errorTextStyle = TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.w400,
   color: AppColors.errorColor,
+);
+
+const hintTextStyle = TextStyle(
+  fontSize: 17,
+  fontWeight: FontWeight.w400,
+  color: AppColors.hintTextColor,
+  fontFamily: defaultFontFamily,
 );
 
 const greyDarkTextStyle = TextStyle(

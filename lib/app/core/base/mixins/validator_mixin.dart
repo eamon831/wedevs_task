@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 mixin ValidatorMixin {
   static const String _requiredErrorMessage = 'This field is required';
 
+  String? noValidator(String? value) {
+    return null;
+  }
+
   String? requiredValidator(String? value) {
     if (value == null || value.isEmpty) {
       return _requiredErrorMessage;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class AppColors {
-  static const Color pageBackground = Color(0xFFFAFBFD);
+  static const Color pageBackground = Color(0xFFF8F8F8);
   static const Color statusBarColor = Color(0xFF38686A);
   static const Color appBarColor = Color(0xFF128C7E);
   static const Color appBarIconColor = Color(0xFFFFFFFF);
@@ -17,7 +17,7 @@ abstract class AppColors {
   static const Color errorColor = Color(0xFFAB0B0B);
   static const Color colorDark = Color(0xFF323232);
 
-  static const Color buttonBgColor = colorPrimary;
+  static const Color buttonBgColor = Color(0xFFF75F55);
   static const Color disabledButtonBgColor = Color(0xFFBFBFC0);
   static const Color defaultRippleColor = Color(0x0338686A);
 
@@ -29,6 +29,8 @@ abstract class AppColors {
   static const Color textColorBlueGreyDark = Color(0xFF939699);
   static const Color textColorCyan = Color(0xFF38686A);
   static const Color textColorWhite = Color(0xFFFFFFFF);
+  static const Color buttonTextColor = const Color(0xFFFFFFFF);
+  static const Color hintTextColor = const Color(0xFFA4A9AF);
   static Color searchFieldTextColor = const Color(0xFF323232).withOpacity(0.5);
 
   static const Color iconColorDefault = Colors.grey;

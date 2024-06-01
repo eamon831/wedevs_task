@@ -6,5 +6,9 @@
    "bottomNavProfile": "প্রোফাইল",
    "signIn": "সাইন ইন",
     "signUp": "নিবন্ধন করুন",
-   "email": "ইমেইল"
+   "email": "ইমেইল",
+   "passWord": "পাসওয়ার্ড",
+   "forgotPassword": "পাসওয়ার্ড ভুলে গেছেন?",
+    "login": "লগইন",
+   "createNewAccount": "নতুন অ্যাকাউন্ট তৈরি করুন"
 }

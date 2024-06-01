@@ -6,5 +6,9 @@
    "bottomNavProfile": "Profile",
    "signIn": "Sign In",
     "signUp": "Sign Up",
-   "email": "Email"
+   "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "login": "Login",
+    "createNewAccount": "Create New Account"
 }
