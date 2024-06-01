@@ -10,5 +10,6 @@
     "password": "Password",
     "forgotPassword": "Forgot Password?",
     "login": "Login",
-    "createNewAccount": "Create New Account"
+    "createNewAccount": "Create New Account",
+     "underDevelopment": "Under Development"
 }

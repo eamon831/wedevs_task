@@ -10,5 +10,6 @@
    "passWord": "পাসওয়ার্ড",
    "forgotPassword": "পাসওয়ার্ড ভুলে গেছেন?",
     "login": "লগইন",
-   "createNewAccount": "নতুন অ্যাকাউন্ট তৈরি করুন"
+   "createNewAccount": "নতুন অ্যাকাউন্ট তৈরি করুন",
+   "underDevelopment": "উন্নতির অধীনে"
 }
