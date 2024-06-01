@@ -123,8 +123,8 @@ const cardSubtitleStyle = TextStyle(
 );
 
 const titleStyle = TextStyle(
-  fontSize: 18,
-  fontWeight: FontWeight.w500,
+  fontSize: 25,
+  fontWeight: FontWeight.w700,
   height: 1.34,
 );
 

@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        fontFamily: 'Inter',
+        fontFamily: 'Roboto',
       ),
       debugShowCheckedModeBanner: false,
     );

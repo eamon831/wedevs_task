@@ -3,5 +3,8 @@
    "bottomNavCategory": "Category",
    "bottomNavSearch": "Search",
    "bottomNavCart": "Cart",
-   "bottomNavProfile": "Profile"
+   "bottomNavProfile": "Profile",
+   "signIn": "Sign In",
+    "signUp": "Sign Up",
+   "email": "Email"
 }

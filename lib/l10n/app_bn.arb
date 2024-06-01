@@ -3,5 +3,8 @@
    "bottomNavCategory": "শ্রেণী",
    "bottomNavSearch": "অনুসন্ধান",
    "bottomNavCart": "কার্ট",
-   "bottomNavProfile": "প্রোফাইল"
+   "bottomNavProfile": "প্রোফাইল",
+   "signIn": "সাইন ইন",
+    "signUp": "নিবন্ধন করুন",
+   "email": "ইমেইল"
 }
