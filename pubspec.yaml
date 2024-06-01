@@ -1,7 +1,7 @@
 name: wedevs_task
 version: 1.0.0+1
 publish_to: 'none'
-description: "Appifylab Task"
+description: "WeDevs Task"
 environment:
   sdk: '>=3.3.1 <4.0.0'
 
