@@ -10,7 +10,9 @@ class SplashController extends BaseController {
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        Get.offNamed(Routes.login);
+        Get.offNamed(
+          Routes.signIn,
+        );
       },
     );
   }

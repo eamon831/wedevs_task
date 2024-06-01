@@ -6,18 +6,18 @@ import '/app/pages/category/bindings/category_binding.dart';
 import '/app/pages/category/views/category_view.dart';
 import '/app/pages/home/bindings/home_binding.dart';
 import '/app/pages/home/views/home_view.dart';
-import '/app/pages/login/bindings/login_binding.dart';
-import '/app/pages/login/views/login_view.dart';
 import '/app/pages/product_search/bindings/product_search_binding.dart';
 import '/app/pages/product_search/views/product_search_view.dart';
 import '/app/pages/profile/bindings/profile_binding.dart';
 import '/app/pages/profile/views/profile_view.dart';
-import '/app/pages/register/bindings/register_binding.dart';
-import '/app/pages/register/views/register_view.dart';
-import '/app/pages/splash/bindings/splash_binding.dart';
-import '/app/pages/splash/views/splash_views.dart';
 import '/app/pages/root/bindings/root_binding.dart';
 import '/app/pages/root/views/root_view.dart';
+import '/app/pages/sign_in/bindings/sign_in_binding.dart';
+import '/app/pages/sign_in/views/sign_in_view.dart';
+import '/app/pages/sign_up/bindings/sign_up_binding.dart';
+import '/app/pages/sign_up/views/sign_up_view.dart';
+import '/app/pages/splash/bindings/splash_binding.dart';
+import '/app/pages/splash/views/splash_views.dart';
 
 part 'app_routes.dart';
 
@@ -31,14 +31,14 @@ class AppPages {
       binding: SplashBinding(),
     ),
     GetPage(
-      name: Routes.login,
-      page: () => LoginView(),
-      binding: LoginBinding(),
+      name: Routes.signIn,
+      page: () => SignInView(),
+      binding: SignInBinding(),
     ),
     GetPage(
-      name: Routes.register,
-      page: () => RegisterView(),
-      binding: RegisterBinding(),
+      name: Routes.signUp,
+      page: () => SignUpView(),
+      binding: SignUpBinding(),
     ),
     GetPage(
       name: Routes.root,

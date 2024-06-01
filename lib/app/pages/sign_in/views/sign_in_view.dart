@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:wedevs_task/app/core/values/text_styles.dart';
-import 'package:wedevs_task/app/core/widget/text_form_field_widget.dart';
 
 import '/app/core/base/base_view.dart';
+import '/app/core/values/text_styles.dart';
 import '/app/core/widget/asset_image_view.dart';
-import '/app/pages/login/controllers/login_controller.dart';
+import '/app/core/widget/text_form_field_widget.dart';
+import '/app/pages/sign_in/controllers/sign_in_controller.dart';
 
 //ignore: must_be_immutable
-class LoginView extends BaseView<LoginController> {
-  LoginView({super.key});
+class SignInView extends BaseView<SignInController> {
+  SignInView({super.key});
 
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
@@ -39,7 +39,7 @@ class LoginView extends BaseView<LoginController> {
         ),
         ElevatedButton(
           onPressed: controller.login,
-          child: Text('Login'),
+          child: const Text('sign in'),
         ),
       ],
     );

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '/app/core/base/base_controller.dart';
 import '/app/routes/app_pages.dart';
 
-class LoginController extends BaseController {
+class SignInController extends BaseController {
   final emailController = TextEditingController();
 
   @override

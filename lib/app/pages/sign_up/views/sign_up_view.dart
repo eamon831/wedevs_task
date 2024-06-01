@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '/app/core/base/base_view.dart';
-import '/app/pages/register/controllers/register_controller.dart';
+import '/app/pages/sign_up/controllers/sign_up_controller.dart';
 
 //ignore: must_be_immutable
-class RegisterView extends BaseView<RegisterController> {
-  RegisterView({super.key});
+class SignUpView extends BaseView<SignUpController> {
+  SignUpView({super.key});
     
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
