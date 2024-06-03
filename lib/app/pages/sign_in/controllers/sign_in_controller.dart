@@ -16,6 +16,8 @@ class SignInController extends BaseController {
   }
 
   void login() {
+    Get.offNamed(Routes.root);
+    return;
     final email = emailController.text;
     final password = passwordController.text;
 
