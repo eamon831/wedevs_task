@@ -14,5 +14,10 @@
    "createNewAccount": "নতুন অ্যাকাউন্ট তৈরি করুন",
    "underDevelopment": "উন্নতির অধীনে",
    "name": "নাম",
-   "alreadyHaveAccount": "ইতিমধ্যে একটি অ্যাকাউন্ট আছে?"
+   "alreadyHaveAccount": "ইতিমধ্যে একটি অ্যাকাউন্ট আছে?",
+   "myAccount": "আমার অ্যাকাউন্ট",
+   "account": "অ্যাকাউন্ট",
+   "passwords": "পাসওয়ার্ড",
+   "notification": "বিজ্ঞপ্তি",
+   "wishlist": "ইচ্ছামত"
 }

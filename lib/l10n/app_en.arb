@@ -14,5 +14,10 @@
     "createNewAccount": "Create New Account",
      "underDevelopment": "Under Development",
   "name": "Name",
-  "alreadyHaveAccount": "Already have an account?"
+  "alreadyHaveAccount": "Already have an account?",
+  "myAccount" : "My Account",
+  "account": "Account",
+  "passwords": "Passwords",
+  "notification": "Notification",
+  "wishlist": "Wishlist"
 }

@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:nb_utils/nb_utils.dart';
+import 'package:wedevs_task/app/core/core_model/logged_user.dart';
 
 import '/app/core/core_model/page_state.dart';
 import '/app/network/exceptions/api_exception.dart';
@@ -20,6 +22,7 @@ abstract class BaseController extends GetxController {
   AppLocalizations get appLocalization => AppLocalizations.of(Get.context!)!;
 
   final logoutController = false.obs;
+  LoggedUser get loggedUser => LoggedUser();
 
   //Reload the page
   final _refreshController = false.obs;
@@ -51,6 +54,9 @@ abstract class BaseController extends GetxController {
 
   showErrorMessage(String msg) {
     _errorMessageController(msg);
+  }
+  void underDevelopment() {
+    toast(appLocalization.underDevelopment);
   }
 
   final _successMessageController = ''.obs;
