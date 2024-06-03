@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '/app/core/base/base_view.dart';
-import '/app/core/values/text_styles.dart';
 import '/app/core/widget/asset_image_view.dart';
 import '/app/core/widget/base_button.dart';
 import '/app/core/widget/text_form_field_widget.dart';
@@ -28,17 +27,75 @@ class SignUpView extends BaseView<SignUpController> {
         shrinkWrap: true,
         children: [
           52.height,
-          const Center(
-            child: AssetImageView(
-              fileName: 'app_logo.svg',
-            ),
+          Stack(
+            children: [
+              Obx(
+                () {
+                  return controller.profilePic.value.path.isNotEmpty
+                      ? Center(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(60),
+                              color: Colors.white,
+                            ),
+                            height: 121,
+                            width: 121,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(60),
+                              child: Image.file(
+                                controller.profilePic.value,
+                                height: 100,
+                                width: 100,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Center(
+                          child: Stack(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(60),
+                                  color: Colors.white,
+                                ),
+                                height: 121,
+                                width: 121,
+                                child: const Center(
+                                  child: SizedBox(
+                                    height: 26,
+                                    width: 26,
+                                    child: AssetImageView(
+                                      fileName: 'ic_person.svg',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                },
+              ),
+              Positioned(
+                right: 70,
+                bottom: -30,
+                child: InkWell(
+                  onTap: controller.pickProfilePic,
+                  child: const AssetImageView(
+                    fileName: 'ic_image_pick.svg',
+                    //width: 60,
+                    //height: 60,
+                  ),
+                ),
+              ),
+            ],
           ),
           52.height,
           TextFormFieldWidget(
-            controller: controller.emailController,
+            controller: controller.nameController,
             hintText: appLocalization.name,
             validator: noValidator,
-            prefix: 'ic_email.svg',
+            prefix: 'ic_person.svg',
           ),
           19.height,
           TextFormFieldWidget(
@@ -116,18 +173,34 @@ class SignUpView extends BaseView<SignUpController> {
           52.height,
           Center(
             child: GestureDetector(
-              onTap: controller.navigateToSignUp,
-              child: Text(
-                appLocalization.createNewAccount,
-                style: const TextStyle(
-                  color: Color(0xFF383C40),
-                  fontSize: 17.36,
-                  fontWeight: FontWeight.w300,
-                  fontFamily: 'Roboto',
-                ),
+              onTap: Get.back,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    appLocalization.alreadyHaveAccount,
+                    style: const TextStyle(
+                      color: Color(0xFF383C40),
+                      fontSize: 17.36,
+                      fontWeight: FontWeight.w300,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                  8.width,
+                  Text(
+                    appLocalization.login,
+                    style: const TextStyle(
+                      color: Color(0xFF2893E3),
+                      fontSize: 17.36,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
+          54.height,
         ],
       ),
     );

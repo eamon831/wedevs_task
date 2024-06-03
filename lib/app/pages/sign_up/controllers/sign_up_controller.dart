@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -11,6 +14,8 @@ class SignUpController extends BaseController {
   final confirmPasswordController = TextEditingController();
   final showPassword = false.obs;
   final showConfirmPassword = false.obs;
+  final profilePic = File('').obs;
+
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -55,5 +60,20 @@ class SignUpController extends BaseController {
 
   void onTapForgotPassword() {
     toast(appLocalization.underDevelopment);
+  }
+
+  Future<void> pickProfilePic() async {
+    final FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'jpeg', 'png'],
+    );
+
+    if (result != null) {
+      final File file = File(result.files.single.path!);
+      profilePic.value = file;
+    } else {
+      logger.i('User canceled the picker');
+      // User canceled the picker
+    }
   }
 }

@@ -13,5 +13,6 @@
     "login": "লগইন",
    "createNewAccount": "নতুন অ্যাকাউন্ট তৈরি করুন",
    "underDevelopment": "উন্নতির অধীনে",
-   "name": "নাম"
+   "name": "নাম",
+   "alreadyHaveAccount": "ইতিমধ্যে একটি অ্যাকাউন্ট আছে?"
 }
