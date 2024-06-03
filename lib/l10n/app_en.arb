@@ -1,7 +1,7 @@
 {
    "bottomNavHome": "Home",
    "bottomNavCategory": "Category",
-   "bottomNavSearch": "Search",
+   "bottomNavProductSearch": "Search",
    "bottomNavCart": "Cart",
    "bottomNavProfile": "Profile",
    "signIn": "Sign In",
