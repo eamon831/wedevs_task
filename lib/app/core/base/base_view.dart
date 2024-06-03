@@ -72,6 +72,7 @@ abstract class BaseView<Controller extends BaseController>
       floatingActionButton: floatingActionButton(),
       body: pageContent(context),
       bottomNavigationBar: bottomNavigationBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       drawer: drawer(),
     );
   }
