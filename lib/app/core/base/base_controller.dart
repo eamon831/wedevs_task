@@ -1,19 +1,19 @@
-import 'dart:async';
-
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:logger/logger.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:wedevs_task/app/core/core_model/logged_user.dart';
 
+import '/app/core/core_model/logged_user.dart';
 import '/app/core/core_model/page_state.dart';
-import '/app/network/exceptions/api_exception.dart';
-import '/app/network/exceptions/app_exception.dart';
-import '/app/network/exceptions/json_format_exception.dart';
-import '/app/network/exceptions/network_exception.dart';
-import '/app/network/exceptions/not_found_exception.dart';
-import '/app/network/exceptions/service_unavailable_exception.dart';
-import '/app/network/exceptions/unauthorized_exception.dart';
+import '/app/core/loaders/loader_screen.dart';
+import '/app/service/client/error_catcher.dart';
+import '/app/service/client/network_error_widgets/error_screen.dart';
+import '/app/service/client/network_error_widgets/no_internet_screen.dart';
+import '/app/service/services.dart';
+import '/app/session_manager/session_manager.dart';
 import '/flavors/build_config.dart';
 
 abstract class BaseController extends GetxController {
@@ -21,7 +21,12 @@ abstract class BaseController extends GetxController {
 
   AppLocalizations get appLocalization => AppLocalizations.of(Get.context!)!;
 
+  SessionManager get prefs => SessionManager();
+
+  Services get services => Services();
+
   final logoutController = false.obs;
+
   LoggedUser get loggedUser => LoggedUser();
 
   //Reload the page
@@ -55,6 +60,7 @@ abstract class BaseController extends GetxController {
   showErrorMessage(String msg) {
     _errorMessageController(msg);
   }
+
   void underDevelopment() {
     toast(appLocalization.underDevelopment);
   }
@@ -65,57 +71,169 @@ abstract class BaseController extends GetxController {
 
   String showSuccessMessage(String msg) => _successMessageController(msg);
 
-  // ignore: long-parameter-list
-  dynamic callDataService<T>(
-    Future<T> future, {
-    Function(Exception exception)? onError,
-    Function(T response)? onSuccess,
-    Function? onStart,
-    Function? onComplete,
-  }) async {
-    Exception? _exception;
+  Future<bool> hasInternet() async {
+    final connectivityResults = await Connectivity().checkConnectivity();
 
-    onStart == null ? showLoading() : onStart();
-
-    try {
-      final T response = await future;
-
-      if (onSuccess != null) onSuccess(response);
-
-      onComplete == null ? hideLoading() : onComplete();
-
-      return response;
-    } on ServiceUnavailableException catch (exception) {
-      _exception = exception;
-      showErrorMessage(exception.message);
-    } on UnauthorizedException catch (exception) {
-      _exception = exception;
-      showErrorMessage(exception.message);
-    } on TimeoutException catch (exception) {
-      _exception = exception;
-      showErrorMessage(exception.message ?? 'Timeout exception');
-    } on NetworkException catch (exception) {
-      _exception = exception;
-      showErrorMessage(exception.message);
-    } on JsonFormatException catch (exception) {
-      _exception = exception;
-      showErrorMessage(exception.message);
-    } on NotFoundException catch (exception) {
-      _exception = exception;
-      showErrorMessage(exception.message);
-    } on ApiException catch (exception) {
-      _exception = exception;
-    } on AppException catch (exception) {
-      _exception = exception;
-      showErrorMessage(exception.message);
-    } catch (error) {
-      _exception = AppException(message: "$error");
-      logger.e("Controller>>>>>> error $error");
+    if (connectivityResults.isEmpty) {
+      return false;
     }
 
-    if (onError != null) onError(_exception);
+    final isConnected =
+        connectivityResults.contains(ConnectivityResult.mobile) ||
+            connectivityResults.contains(ConnectivityResult.wifi);
 
-    onComplete == null ? hideLoading() : onComplete();
+    if (!isConnected) {
+      return false;
+    }
+
+    return InternetConnectionChecker().hasConnection;
+  }
+
+  void changeLocale() {
+    Get.updateLocale(
+      Get.locale == const Locale('en', 'US')
+          ? const Locale('bn', 'BD')
+          : const Locale('en', 'US'),
+    );
+  }
+
+  Future<void> showLoader() async {
+    Future.delayed(
+      Duration.zero,
+      () => Get.to(
+        LoaderScreen(),
+        opaque: false,
+        fullscreenDialog: true,
+      ),
+    );
+  }
+
+  void handleNoInternet() {
+    Get.to(
+      const NoInternetScreen(),
+      opaque: false,
+      fullscreenDialog: true,
+    );
+  }
+
+  void closeLoader() {
+    Get.back();
+  }
+
+  Future<void> dataFetcher(
+    Future<void> Function() fetchDataFunction, {
+    bool shouldShowLoader = true,
+    bool shouldCheckInternet = true,
+  }) async {
+    if (shouldCheckInternet && !(await hasInternet())) {
+      handleNoInternet();
+      return;
+    }
+
+    ErrorCatcher.setError(hasError: false, statusCode: null);
+
+    if (shouldShowLoader) {
+      await showLoader();
+    }
+
+    try {
+      await fetchDataFunction();
+    } finally {
+      if (!(ErrorCatcher().hasError ?? false) && shouldShowLoader) {
+        closeLoader();
+      } else if (shouldShowLoader) {
+        closeLoader();
+        _handleException(
+          exception: ErrorCatcher().exception!,
+          stackTrace: ErrorCatcher().stackTrace!,
+          statusCode: ErrorCatcher().statusCode!,
+        );
+      }
+    }
+  }
+
+  void _handleException({
+    required Exception exception,
+    required StackTrace stackTrace,
+    required int statusCode,
+  }) {
+    if (kDebugMode) {
+      print('statusCode: $statusCode');
+      print('Exception: $exception');
+    }
+
+    final String errorMsg = _getErrorMessage(statusCode);
+
+    _navigateToScreen(
+      () => ErrorScreen(
+        errorCode: statusCode.toString(),
+        errorMessage: errorMsg,
+      ),
+    );
+  }
+
+  void _navigateToScreen(Widget Function() screen) {
+    Future.delayed(
+      Duration.zero,
+      () => Get.to(
+        screen,
+        opaque: false,
+        fullscreenDialog: true,
+      ),
+    );
+  }
+
+  String _getErrorMessage(int statusCode) {
+    switch (statusCode) {
+      case 400:
+        return 'Bad Request';
+      case 401:
+        return 'Unauthorized';
+      case 403:
+        return 'Forbidden';
+      case 404:
+        return 'Not Found';
+      case 405:
+        return 'Method Not Allowed';
+      case 406:
+        return 'Not Acceptable';
+      case 408:
+        return 'Request Timeout';
+      case 409:
+        return 'Conflict';
+      case 410:
+        return 'Gone';
+      case 411:
+        return 'Length Required';
+      case 412:
+        return 'Precondition Failed';
+      case 413:
+        return 'Payload Too Large';
+      case 414:
+        return 'URI Too Long';
+      case 415:
+        return 'Unsupported Media Type';
+      case 416:
+        return 'Range Not Satisfiable';
+      case 417:
+        return 'Expectation Failed';
+      case 422:
+        return 'Unprocessable Entity';
+      case 429:
+        return 'Too Many Requests';
+      case 500:
+        return 'Internal Server Error';
+      case 501:
+        return 'Not Implemented';
+      case 502:
+        return 'Bad Gateway';
+      case 503:
+        return 'Service Unavailable';
+      case 504:
+        return 'Gateway Timeout';
+      default:
+        return 'Unknown Error';
+    }
   }
 
   @override
