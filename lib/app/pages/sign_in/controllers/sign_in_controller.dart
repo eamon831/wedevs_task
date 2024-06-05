@@ -6,7 +6,7 @@ import '/app/core/base/base_controller.dart';
 import '/app/routes/app_pages.dart';
 
 class SignInController extends BaseController {
-  final emailController = TextEditingController();
+  final userNameController = TextEditingController();
   final passwordController = TextEditingController();
   final showPassword = false.obs;
 
@@ -15,16 +15,14 @@ class SignInController extends BaseController {
     super.onInit();
   }
 
-  void login() {
-    Get.offNamed(Routes.root);
-    return;
-    final email = emailController.text;
+  Future<void> login() async {
+    final userName = userNameController.text;
     final password = passwordController.text;
 
-    if (!GetUtils.isEmail(email)) {
+    if (userName.isEmpty) {
       Get.snackbar(
         'Error',
-        'Please enter a valid email',
+        'Please enter a valid userName',
         snackPosition: SnackPosition.BOTTOM,
       );
       return;
@@ -39,7 +37,19 @@ class SignInController extends BaseController {
       return;
     }
 
-    Get.offNamed(Routes.root);
+    final isLoggedIn = await services.authenticateUser(
+      username: userName,
+      password: password,
+    );
+    if (isLoggedIn != null) {
+      Get.offNamed(Routes.root);
+    } else {
+      Get.snackbar(
+        'Error',
+        'Invalid userName or password',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 
   void navigateToSignUp() {

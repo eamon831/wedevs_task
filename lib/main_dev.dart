@@ -10,7 +10,7 @@ Future<void> main() async {
 
   final EnvConfig devConfig = EnvConfig(
     appName: 'WeDevs Task Dev',
-    baseUrl: 'http://apptest.dokandemo.com/wp-json/',
+    baseUrl: 'https://apptest.dokandemo.com/wp-json/',
     shouldCollectCrashLog: true,
   );
 

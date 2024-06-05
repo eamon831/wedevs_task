@@ -10,7 +10,7 @@ Future<void> main() async {
 
   final EnvConfig prodConfig = EnvConfig(
     appName: 'WeDevs Task Prod',
-    baseUrl: 'http://apptest.dokandemo.com/wp-json/',
+    baseUrl: 'https://apptest.dokandemo.com/wp-json/',
     shouldCollectCrashLog: true,
   );
 

@@ -21,7 +21,8 @@ class SignUpController extends BaseController {
     super.onInit();
   }
 
-  void login() {
+  Future<void> login() async {
+    final username = nameController.text;
     final email = emailController.text;
     final password = passwordController.text;
 
@@ -43,7 +44,12 @@ class SignUpController extends BaseController {
       return;
     }
 
-    Get.offNamed(Routes.root);
+    await services.registerAndUploadProfilePicture(
+      username,
+      email,
+      password,
+      profilePic.value,
+    );
   }
 
   void navigateToSignUp() {

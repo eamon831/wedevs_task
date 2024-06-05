@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '/app/routes/app_pages.dart';
 import '/flavors/build_config.dart';
 import '/flavors/env_config.dart';
+import 'bindings/initial_binding.dart';
 import 'core/values/app_colors.dart';
 
 class MyApp extends StatefulWidget {
@@ -21,6 +22,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: _envConfig.appName,
+      debugShowCheckedModeBanner: false,
+      initialBinding: InitialBinding(),
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -39,7 +42,6 @@ class _MyAppState extends State<MyApp> {
         ),
         fontFamily: 'Roboto',
       ),
-      debugShowCheckedModeBanner: false,
     );
   }
 

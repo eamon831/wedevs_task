@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:nb_utils/nb_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -73,5 +75,16 @@ class SessionManager {
   /// Get the password of the logged-in user.
   Future<String?> getLoggedUserPassword() async {
     return prefs.getString(prefsLoggedUserPassword);
+  }
+
+  /// Set the user data.
+  Future<void> setUser(Map<String, dynamic> user) async {
+    await prefs.setString(prefsUser, jsonEncode(user));
+  }
+
+  /// Get the user data.
+  Future<Map<String, dynamic>> getUser() async {
+    final user = prefs.getString(prefsUser);
+    return user != null ? jsonDecode(user) as Map<String, dynamic> : {};
   }
 }

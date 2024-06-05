@@ -2,3 +2,4 @@
 const prefsIsLogin = 'isLogin';
 const prefsLoggedUserName = 'loggedUserName';
 const prefsLoggedUserPassword = 'loggedUserPassword';
+const prefsUser = 'user';

@@ -43,7 +43,7 @@ class SignInView extends BaseView<SignInController> {
           ),
           41.height,
           TextFormFieldWidget(
-            controller: controller.emailController,
+            controller: controller.userNameController,
             hintText: appLocalization.email,
             validator: noValidator,
             prefix: 'ic_email.svg',
