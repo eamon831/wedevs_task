@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -87,19 +88,23 @@ class Services {
     String password,
     File value,
   ) async {
-    final isRegistered = await registerUser(
-      username: username,
-      email: email,
-      password: password,
-    );
-    if (isRegistered) {
-      final token = await authenticateUser(
+    try {
+      final isRegistered = await registerUser(
         username: username,
+        email: email,
         password: password,
       );
-      if (token != null) {
-        return true;
+      if (isRegistered) {
+        final token = await authenticateUser(
+          username: username,
+          password: password,
+        );
+        if (token != null) {
+          return true;
+        }
       }
+    } on Exception catch (e) {
+      log(e.toString());
     }
     return false;
   }

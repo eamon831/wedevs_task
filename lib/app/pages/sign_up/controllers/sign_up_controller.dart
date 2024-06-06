@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,76 +13,80 @@ class SignUpController extends BaseController {
   final confirmPasswordController = TextEditingController();
   final showPassword = false.obs;
   final showConfirmPassword = false.obs;
-  final profilePic = File('').obs;
+  final profilePic = Rx<File?>(null);
 
   @override
   Future<void> onInit() async {
     super.onInit();
   }
 
-  Future<void> login() async {
-    final username = nameController.text;
-    final email = emailController.text;
-    final password = passwordController.text;
-    final confirmPassword = confirmPasswordController.text;
+  Future<void> signUp() async {
+    final username = nameController.text.trim();
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+    final confirmPassword = confirmPasswordController.text.trim();
 
-    await dataFetcher(
-      () async {
-        await services.registerAndUploadProfilePicture(
-          username,
-          email,
-          password,
-          profilePic.value,
-        );
-      },
-    );
+    if (!_validateInputs(username, email, password, confirmPassword)) return;
 
-    return;
+    await _registerUser(username, email, password);
+  }
 
+  bool _validateInputs(
+      String username, String email, String password, String confirmPassword) {
     if (username.isEmpty) {
-      Get.snackbar(
-        'Error',
-        'Please enter a username',
-        snackPosition: SnackPosition.BOTTOM,
-      );
-      return;
+      _showErrorSnackbar('Please enter a username');
+      return false;
     }
 
     if (!GetUtils.isEmail(email)) {
-      Get.snackbar(
-        'Error',
-        'Please enter a valid email',
-        snackPosition: SnackPosition.BOTTOM,
-      );
-      return;
+      _showErrorSnackbar('Please enter a valid email');
+      return false;
     }
 
     if (password.isEmpty) {
-      Get.snackbar(
-        'Error',
-        'Please enter a password',
-        snackPosition: SnackPosition.BOTTOM,
-      );
-      return;
+      _showErrorSnackbar('Please enter a password');
+      return false;
     }
 
     if (password != confirmPassword) {
-      Get.snackbar(
-        'Error',
-        'Passwords do not match',
-        snackPosition: SnackPosition.BOTTOM,
-      );
-      return;
+      _showErrorSnackbar('Passwords do not match');
+      return false;
     }
 
-    if (profilePic.value.path.isEmpty) {
-      Get.snackbar(
-        'Error',
-        'Please select a profile picture',
-        snackPosition: SnackPosition.BOTTOM,
-      );
-      return;
+    if (profilePic.value == null) {
+      _showErrorSnackbar('Please select a profile picture');
+      return false;
     }
+
+    return true;
+  }
+
+  void _showErrorSnackbar(String message) {
+    Get.snackbar(
+      'Error',
+      message,
+      snackPosition: SnackPosition.TOP,
+    );
+  }
+
+  Future<void> _registerUser(
+    String username,
+    String email,
+    String password,
+  ) async {
+    await dataFetcher(
+      () async {
+        final isRegistered = await services.registerAndUploadProfilePicture(
+          username,
+          email,
+          password,
+          profilePic.value!,
+        );
+        if (isRegistered) {
+          Get.offAllNamed(Routes.root);
+        }
+      },
+    );
   }
 
   void navigateToSignUp() {
@@ -109,11 +112,9 @@ class SignUpController extends BaseController {
     );
 
     if (result != null) {
-      final File file = File(result.files.single.path!);
-      profilePic.value = file;
+      profilePic.value = File(result.files.single.path!);
     } else {
       logger.i('User canceled the picker');
-      // User canceled the picker
     }
   }
 }
