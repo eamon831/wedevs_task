@@ -20,7 +20,7 @@ class BottomNavBar extends StatelessWidget with BaseWidgetMixin {
   final navController = BottomNavController();
   final Key bottomNavKey = GlobalKey();
   final Color selectedItemColor = const Color(0xFFFF679B);
-  final Color unselectedItemColor = Colors.grey;
+  final Color unselectedItemColor = const Color(0xFF6E7FAA);
 
   static const _floatingButtonTopOffset = -25.0;
   static const _floatingButtonSpaceWidth = 40.0;
