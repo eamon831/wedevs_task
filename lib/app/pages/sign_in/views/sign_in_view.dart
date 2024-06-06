@@ -99,7 +99,7 @@ class SignInView extends BaseView<SignInController> {
               InkWell(
                 onTap: controller.signInWithGoogle,
                 child: const AssetImageView(
-                  fileName: 'ic_google.svg',
+                  fileName: 'ic_google.png',
                 ),
               ),
             ],
