@@ -26,5 +26,8 @@
   "zipCode": "Zip Code",
     "cancel": "Cancel",
     "save": "Save",
-  "changeLanguage": "Change Language"
+  "changeLanguage": "Change Language",
+  "productList": "Product List",
+  "filter": "Filter",
+  "sortBy": "Sort By"
 }
