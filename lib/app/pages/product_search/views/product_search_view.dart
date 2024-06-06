@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wedevs_task/app/core/values/text_styles.dart';
@@ -122,37 +124,34 @@ class ProductSearchView extends BaseView<ProductSearchController> {
           ),
           30.height,
           Expanded(
-            child: ListView.builder(
-              itemCount: controller.products.value?.length??0,
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: const EdgeInsets.only(
-                    bottom: 20,
+            child: Obx(
+              () {
+                return MasonryGridView.builder(
+                  gridDelegate:
+                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
                   ),
-                  padding: const EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    top: 22,
-                    bottom: 22,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: Colors.transparent,
-                      width: 0,
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x1A395AB8),
-                        offset: Offset(0, 3),
-                        blurRadius: 4,
+                  itemCount: controller.products.value?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: Colors.transparent,
+                          width: 0,
+                        ),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0x1A395AB8),
+                            offset: Offset(0, 3),
+                            blurRadius: 4,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [],
-                  ),
+                    );
+                  },
                 );
               },
             ),
