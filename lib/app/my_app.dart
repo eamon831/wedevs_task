@@ -27,7 +27,6 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       title: _envConfig.appName,
       debugShowCheckedModeBanner: false,
-      initialBinding: InitialBinding(),
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
