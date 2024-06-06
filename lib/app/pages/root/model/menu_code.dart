@@ -38,7 +38,7 @@ extension MenuCodeExtensions on MenuCode {
         return BottomNavItem(
           navTitle: appLocalization.bottomNavCart,
           iconSvgName: 'ic_cart.svg',
-          menuCode: MenuCode.home,
+          menuCode: MenuCode.cart,
         );
       case MenuCode.profile:
         return BottomNavItem(
