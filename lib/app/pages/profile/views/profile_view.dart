@@ -138,6 +138,9 @@ class ProfileView extends BaseView<ProfileController> {
                 ),
               ],
             ),
+            Obx(
+              () => element.isOpen.value ? element.child : Container(),
+            ),
             if (!element.isLast)
               Column(
                 children: [

@@ -1,5 +1,7 @@
 import 'package:flutter/animation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../views/account_view.dart';
 import '/app/core/base/base_controller.dart';
 
 enum ProfileButtonEnum { account, passwords, notification, wishlist }
@@ -50,6 +52,7 @@ class ProfileButton {
   final RxBool isOpen;
   final bool isLast;
   final ProfileButtonEnum profileButtonEnum;
+  Widget child;
 
   ProfileButton({
     required this.title,
@@ -57,6 +60,7 @@ class ProfileButton {
     required this.onTap,
     required this.profileButtonEnum,
     this.isLast = false,
+    this.child = const SizedBox(),
   }) : isOpen = false.obs;
 
   ProfileButton.account({
@@ -67,6 +71,7 @@ class ProfileButton {
           fileName: 'ic_person.svg',
           onTap: onTap,
           profileButtonEnum: ProfileButtonEnum.account,
+          child:AccountView(),
         );
 
   ProfileButton.passwords({

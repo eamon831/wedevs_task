@@ -19,5 +19,11 @@
   "account": "Account",
   "passwords": "Passwords",
   "notification": "Notification",
-  "wishlist": "Wishlist"
+  "wishlist": "Wishlist",
+  "fullName": "Full Name",
+  "streetAddress": "Street Address",
+  "apt": "Apt, Suite, Bldg (optional)",
+  "zipCode": "Zip Code",
+    "cancel": "Cancel",
+    "save": "Save"
 }
