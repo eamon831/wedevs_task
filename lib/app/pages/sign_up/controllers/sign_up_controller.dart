@@ -25,6 +25,29 @@ class SignUpController extends BaseController {
     final username = nameController.text;
     final email = emailController.text;
     final password = passwordController.text;
+    final confirmPassword = confirmPasswordController.text;
+
+    await dataFetcher(
+      () async {
+        await services.registerAndUploadProfilePicture(
+          username,
+          email,
+          password,
+          profilePic.value,
+        );
+      },
+    );
+
+    return;
+
+    if (username.isEmpty) {
+      Get.snackbar(
+        'Error',
+        'Please enter a username',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return;
+    }
 
     if (!GetUtils.isEmail(email)) {
       Get.snackbar(
@@ -44,12 +67,23 @@ class SignUpController extends BaseController {
       return;
     }
 
-    await services.registerAndUploadProfilePicture(
-      username,
-      email,
-      password,
-      profilePic.value,
-    );
+    if (password != confirmPassword) {
+      Get.snackbar(
+        'Error',
+        'Passwords do not match',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return;
+    }
+
+    if (profilePic.value.path.isEmpty) {
+      Get.snackbar(
+        'Error',
+        'Please select a profile picture',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return;
+    }
   }
 
   void navigateToSignUp() {

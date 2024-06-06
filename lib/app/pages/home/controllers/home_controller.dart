@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:wedevs_task/app/routes/app_pages.dart';
   import '/app/core/base/base_controller.dart';
   
 class HomeController extends BaseController {
@@ -7,5 +8,9 @@ class HomeController extends BaseController {
     super.onInit();
   }
 
+
+  void restartApp() {
+    Get.offNamed(Routes.splash);
+  }
 }
   

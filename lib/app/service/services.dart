@@ -71,7 +71,9 @@ class Services {
       final responseMap = response.data as Map<String, dynamic>;
       pref
         ..setIsLogin(isLogin: true)
-        ..setUser(responseMap);
+        ..setUser(responseMap)
+        ..setLoggedUserName(username)
+        ..setLoggedUserPassword(password);
 
       LoggedUser.fromJson(responseMap);
       return responseMap['token'];
