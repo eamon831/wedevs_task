@@ -120,6 +120,43 @@ class ProductSearchView extends BaseView<ProductSearchController> {
               ],
             ),
           ),
+          30.height,
+          Expanded(
+            child: ListView.builder(
+              itemCount: controller.products.value?.length??0,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: const EdgeInsets.only(
+                    bottom: 20,
+                  ),
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                    top: 22,
+                    bottom: 22,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: Colors.transparent,
+                      width: 0,
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x1A395AB8),
+                        offset: Offset(0, 3),
+                        blurRadius: 4,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [],
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

@@ -44,7 +44,7 @@ class Product {
   final String? taxStatus;
   final String? taxClass;
   final bool? manageStock;
-  final dynamic stockQuantity;
+  final num? stockQuantity;
   final String? lowStockAmount;
   final bool? inStock;
   final String? backorders;
@@ -199,7 +199,9 @@ class Product {
         taxClass: json['tax_class'],
         manageStock: json['manage_stock'],
         stockQuantity: json['stock_quantity'],
-        lowStockAmount: json['low_stock_amount'],
+        lowStockAmount: json['low_stock_amount'] is String
+            ? json['low_stock_amount']
+            : json['low_stock_amount'].toString(),
         inStock: json['in_stock'],
         backorders: json['backorders'],
         backordersAllowed: json['backorders_allowed'],

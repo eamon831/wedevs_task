@@ -1,8 +1,11 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
 import 'package:wedevs_task/app/core/core_model/logged_user.dart';
+import 'package:wedevs_task/app/model/product.dart';
 
 import '/app/service/endpoints.dart';
 import '/app/session_manager/session_manager.dart';
@@ -107,5 +110,26 @@ class Services {
       log(e.toString());
     }
     return false;
+  }
+
+  Future<List<Product>?> fetchProducts() async {
+    try {
+      //read json file from assets/json directory
+      final json = await parseJsonFromAssets('assets/json/response.json');
+      //simulate network delay
+      await Future.delayed(const Duration(seconds: 2));
+      if (json != null && json is List) {
+        return json.map((e) => Product.fromJson(e)).toList();
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+    }
+
+    return null;
+  }
+
+  Future<dynamic> parseJsonFromAssets(String assetsPath) async {
+    final jsonStr = await rootBundle.loadString(assetsPath);
+    return jsonDecode(jsonStr);
   }
 }
