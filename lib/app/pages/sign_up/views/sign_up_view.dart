@@ -31,7 +31,7 @@ class SignUpView extends BaseView<SignUpController> {
             children: [
               Obx(
                 () {
-                  return controller.profilePic.value.path.isNotEmpty
+                  return (controller.profilePic.value?.path.isNotEmpty ?? false)
                       ? Center(
                           child: Container(
                             decoration: BoxDecoration(
@@ -43,7 +43,7 @@ class SignUpView extends BaseView<SignUpController> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(60),
                               child: Image.file(
-                                controller.profilePic.value,
+                                controller.profilePic.value!,
                                 height: 100,
                                 width: 100,
                                 fit: BoxFit.fill,
@@ -149,7 +149,7 @@ class SignUpView extends BaseView<SignUpController> {
           78.height,
           BaseButton(
             buttonText: appLocalization.login,
-            onPressed: controller.login,
+            onPressed: controller.signUp,
           ),
           40.height,
           Row(
