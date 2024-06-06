@@ -127,7 +127,7 @@ class ProfileView extends BaseView<ProfileController> {
                 ),
                 14.width,
                 Text(
-                  element.title ?? '',
+                  element.title(),
                   style: titleStyle.copyWith(
                     fontSize: 17.36,
                     fontWeight: FontWeight.w400,

@@ -10,20 +10,20 @@ class ProfileController extends BaseController {
   late List<ProfileButton> profileButtonList = [
     ProfileButton.account(
       onTap: toggleButton(ProfileButtonEnum.account),
-      title: appLocalization.account,
+      title: () => appLocalization.account,
     ),
     ProfileButton.passwords(
       onTap: toggleButton(ProfileButtonEnum.passwords),
-      title: appLocalization.passwords,
+      title: () => appLocalization.passwords,
     ),
     ProfileButton.notification(
       onTap: toggleButton(ProfileButtonEnum.notification),
-      title: appLocalization.notification,
+      title: () => appLocalization.notification,
     ),
     ProfileButton.wishlist(
       onTap: toggleButton(ProfileButtonEnum.wishlist),
       isLast: true,
-      title: appLocalization.wishlist,
+      title: () => appLocalization.wishlist,
     ),
   ];
 
@@ -46,7 +46,7 @@ class ProfileController extends BaseController {
 }
 
 class ProfileButton {
-  final String title;
+  final String Function() title;
   final String fileName;
   final VoidCallback onTap;
   final RxBool isOpen;
@@ -65,18 +65,18 @@ class ProfileButton {
 
   ProfileButton.account({
     required VoidCallback onTap,
-    required String title,
+    required String Function() title,
   }) : this(
           title: title,
           fileName: 'ic_person.svg',
           onTap: onTap,
           profileButtonEnum: ProfileButtonEnum.account,
-          child:AccountView(),
+          child: AccountView(),
         );
 
   ProfileButton.passwords({
     required VoidCallback onTap,
-    required String title,
+    required String Function() title,
   }) : this(
           title: title,
           fileName: 'ic_password.svg',
@@ -86,7 +86,7 @@ class ProfileButton {
 
   ProfileButton.notification({
     required VoidCallback onTap,
-    required String title,
+    required String Function() title,
   }) : this(
           title: title,
           fileName: 'ic_bell.svg',
@@ -96,7 +96,7 @@ class ProfileButton {
 
   ProfileButton.wishlist({
     required VoidCallback onTap,
-    required String title,
+    required String Function() title,
     bool isLast = false,
   }) : this(
           title: title,
