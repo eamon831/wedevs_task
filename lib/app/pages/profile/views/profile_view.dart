@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wedevs_task/app/core/values/text_styles.dart';
 import 'package:wedevs_task/app/core/widget/asset_image_view.dart';
+import 'package:wedevs_task/app/core/widget/base_button.dart';
 import '/app/core/base/base_view.dart';
 import '/app/pages/profile/controllers/profile_controller.dart';
 
@@ -37,6 +38,7 @@ class ProfileView extends BaseView<ProfileController> {
             fileName: 'ic_person.svg',
           ),
           40.height,
+
           Center(
             child: Column(
               children: [
@@ -84,6 +86,7 @@ class ProfileView extends BaseView<ProfileController> {
               ).toList(),
             ),
           ),
+          20.height,
         ],
       ),
     );
@@ -92,7 +95,7 @@ class ProfileView extends BaseView<ProfileController> {
   Widget profilePageButton({
     required ProfileButton element,
   }) {
-    return GestureDetector(
+    return InkWell(
       onTap: element.onTap,
       child: Container(
         padding: EdgeInsets.only(
@@ -107,8 +110,8 @@ class ProfileView extends BaseView<ProfileController> {
               children: [
                 AssetImageView(
                   fileName: element.fileName,
-                  width: 30,
-                  height: 30,
+                  width: 22,
+                  height: 22,
                 ),
                 14.width,
                 Text(
@@ -124,15 +127,19 @@ class ProfileView extends BaseView<ProfileController> {
                 Obx(
                   () {
                     return element.isOpen.value
-                        ? const AssetImageView(
-                            fileName: 'ic_arrow_down.svg',
-                            width: 20,
-                            height: 20,
+                        ? const SizedBox(
+                            width: 12,
+                            height: 7,
+                            child: AssetImageView(
+                              fileName: 'ic_arrow_down.svg',
+                            ),
                           )
-                        : const AssetImageView(
-                            fileName: 'ic_arrow_right.svg',
-                            width: 20,
-                            height: 20,
+                        : const SizedBox(
+                            width: 12,
+                            height: 12,
+                            child: AssetImageView(
+                              fileName: 'ic_arrow_right.svg',
+                            ),
                           );
                   },
                 ),
