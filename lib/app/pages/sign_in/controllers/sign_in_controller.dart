@@ -6,9 +6,15 @@ import '/app/core/base/base_controller.dart';
 import '/app/routes/app_pages.dart';
 
 class SignInController extends BaseController {
-  final userNameController = TextEditingController();
-  final passwordController = TextEditingController();
-  final showPassword = false.obs;
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final RxBool showPassword = false.obs;
+
+  // String constants for error messages
+  static const String errorTitle = 'Error';
+  static const String emptyUsernameError = 'Please enter a valid username';
+  static const String emptyPasswordError = 'Please enter a password';
+  static const String invalidCredentialsError = 'Invalid username or password';
 
   @override
   Future<void> onInit() async {
@@ -16,40 +22,45 @@ class SignInController extends BaseController {
   }
 
   Future<void> login() async {
-    final userName = userNameController.text;
-    final password = passwordController.text;
+    final String userName = userNameController.text.trim();
+    final String password = passwordController.text.trim();
 
     if (userName.isEmpty) {
-      Get.snackbar(
-        'Error',
-        'Please enter a valid userName',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      _showErrorSnackbar(emptyUsernameError);
       return;
     }
 
     if (password.isEmpty) {
-      Get.snackbar(
-        'Error',
-        'Please enter a password',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      _showErrorSnackbar(emptyPasswordError);
       return;
     }
 
-    final isLoggedIn = await services.authenticateUser(
-      username: userName,
-      password: password,
-    );
-    if (isLoggedIn != null) {
-      Get.offNamed(Routes.root);
-    } else {
-      Get.snackbar(
-        'Error',
-        'Invalid userName or password',
-        snackPosition: SnackPosition.BOTTOM,
+    try {
+      await dataFetcher(
+        () async {
+          final isLoggedIn = await services.authenticateUser(
+            username: userName,
+            password: password,
+          );
+
+          if (isLoggedIn) {
+            Get.offAllNamed(Routes.root);
+          } else {
+            _showErrorSnackbar(invalidCredentialsError);
+          }
+        },
       );
+    } on Exception catch (e) {
+      _showErrorSnackbar(e.toString());
     }
+  }
+
+  void _showErrorSnackbar(String message) {
+    Get.snackbar(
+      errorTitle,
+      message,
+      snackPosition: SnackPosition.TOP,
+    );
   }
 
   void navigateToSignUp() {
@@ -57,14 +68,18 @@ class SignInController extends BaseController {
   }
 
   void signInWithFacebook() {
-    toast(appLocalization.underDevelopment);
+    _showUnderDevelopmentToast();
   }
 
   void signInWithGoogle() {
-    toast(appLocalization.underDevelopment);
+    _showUnderDevelopmentToast();
   }
 
   void onTapForgotPassword() {
+    _showUnderDevelopmentToast();
+  }
+
+  void _showUnderDevelopmentToast() {
     toast(appLocalization.underDevelopment);
   }
 }

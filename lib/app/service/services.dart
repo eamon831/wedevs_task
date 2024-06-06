@@ -54,7 +54,7 @@ class Services {
     return false;
   }
 
-  Future<String?> authenticateUser({
+  Future<bool> authenticateUser({
     required String username,
     required String password,
   }) async {
@@ -77,9 +77,9 @@ class Services {
         ..setLoggedUserPassword(password);
 
       LoggedUser.fromJson(responseMap);
-      return responseMap['token'];
+      return true;
     }
-    return null;
+    return false;
   }
 
   Future<bool> registerAndUploadProfilePicture(
@@ -95,11 +95,11 @@ class Services {
         password: password,
       );
       if (isRegistered) {
-        final token = await authenticateUser(
+        final isAuthenticated = await authenticateUser(
           username: username,
           password: password,
         );
-        if (token != null) {
+        if (isAuthenticated) {
           return true;
         }
       }
