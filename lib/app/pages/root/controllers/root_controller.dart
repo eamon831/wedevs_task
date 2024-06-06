@@ -9,11 +9,9 @@ class RootController extends BaseController {
     super.onInit();
   }
 
-  final _selectedMenuCodeController = MenuCode.home.obs;
+  final _selectedMenuCodeController = MenuCode.productSearch.obs;
 
   MenuCode get selectedMenuCode => _selectedMenuCodeController.value;
-
-  final lifeCardUpdateController = false.obs;
 
   Future<void> onMenuSelected(MenuCode menuCode) async {
     _selectedMenuCodeController(menuCode);
