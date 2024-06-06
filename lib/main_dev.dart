@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '/app/my_app.dart';
 import '/flavors/build_config.dart';
@@ -7,6 +9,8 @@ import '/flavors/environment.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initialize();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   final EnvConfig devConfig = EnvConfig(
     appName: 'WeDevs Task Dev',

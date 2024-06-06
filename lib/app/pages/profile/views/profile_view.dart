@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wedevs_task/app/core/values/text_styles.dart';
 import 'package:wedevs_task/app/core/widget/asset_image_view.dart';
@@ -44,23 +43,25 @@ class ProfileView extends BaseView<ProfileController> {
                 Text(
                   controller.loggedUser.userNiceName ?? 'John Smith',
                   style: titleStyle.copyWith(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w900,
-                      fontFamily: 'Lato'),
+                    fontSize: 24,
+                    fontWeight: FontWeight.w900,
+                    fontFamily: 'Lato',
+                  ),
                 ),
                 6.height,
                 Text(
                   controller.loggedUser.userEmail ?? 'info@johnsmith.com',
                   style: titleStyle.copyWith(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Lato'),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Lato',
+                  ),
                 ),
               ],
             ),
           ),
           40.height,
-          Container(
+          DecoratedBox(
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -74,29 +75,13 @@ class ProfileView extends BaseView<ProfileController> {
               ],
             ),
             child: Column(
-              children: [
-                profilePageButton(
-                  title: appLocalization.account,
-                  fileName: 'ic_person.svg',
-                  onPressed: controller.underDevelopment,
-                ),
-                profilePageButton(
-                  title: appLocalization.passwords,
-                  fileName: 'ic_password.svg',
-                  onPressed: controller.underDevelopment,
-                ),
-                profilePageButton(
-                  title: appLocalization.notification,
-                  fileName: 'ic_bell.svg',
-                  onPressed: controller.underDevelopment,
-                ),
-                profilePageButton(
-                  title: appLocalization.wishlist,
-                  fileName: 'ic_heart.svg',
-                  onPressed: controller.underDevelopment,
-                  isLast: true,
-                ),
-              ],
+              children: controller.profileButtonList.map(
+                (e) {
+                  return profilePageButton(
+                    element: e,
+                  );
+                },
+              ).toList(),
             ),
           ),
         ],
@@ -105,32 +90,29 @@ class ProfileView extends BaseView<ProfileController> {
   }
 
   Widget profilePageButton({
-    required final String fileName,
-    required final VoidCallback onPressed,
-    final String? title,
-    bool isLast = false,
+    required ProfileButton element,
   }) {
     return GestureDetector(
-      onTap: onPressed,
+      onTap: element.onTap,
       child: Container(
         padding: EdgeInsets.only(
           left: 20,
           right: 20,
           top: 20,
-          bottom: isLast ? 21 : 0,
+          bottom: element.isLast ? 21 : 0,
         ),
         child: Column(
           children: [
             Row(
               children: [
                 AssetImageView(
-                  fileName: fileName,
+                  fileName: element.fileName,
                   width: 30,
                   height: 30,
                 ),
                 14.width,
                 Text(
-                  title ?? '',
+                  element.title ?? '',
                   style: titleStyle.copyWith(
                     fontSize: 17.36,
                     fontWeight: FontWeight.w400,
@@ -139,13 +121,24 @@ class ProfileView extends BaseView<ProfileController> {
                   ),
                 ),
                 const Spacer(),
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.black,
+                Obx(
+                  () {
+                    return element.isOpen.value
+                        ? const AssetImageView(
+                            fileName: 'ic_arrow_down.svg',
+                            width: 20,
+                            height: 20,
+                          )
+                        : const AssetImageView(
+                            fileName: 'ic_arrow_right.svg',
+                            width: 20,
+                            height: 20,
+                          );
+                  },
                 ),
               ],
             ),
-            if (!isLast)
+            if (!element.isLast)
               Column(
                 children: [
                   20.height,
