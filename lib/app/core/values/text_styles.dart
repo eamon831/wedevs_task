@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '/app/core/values/app_colors.dart';
 
@@ -138,7 +139,7 @@ const cardSubtitleStyle = TextStyle(
   color: AppColors.textColorGreyLight,
 );
 
-const titleStyle = TextStyle(
+final titleStyle = GoogleFonts.roboto(
   fontSize: 25,
   fontWeight: FontWeight.w700,
   height: 1.34,
