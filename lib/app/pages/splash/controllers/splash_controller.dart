@@ -13,7 +13,6 @@ class SplashController extends BaseController {
   }
 
   Future<void> navigateToNextScreen() async {
-    await SessionManager().init();
     final isLoggedIn = await prefs.getIsLogin();
     // currently using shared preferences
     // but we can also do online validation here

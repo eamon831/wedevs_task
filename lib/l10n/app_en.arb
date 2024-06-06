@@ -25,5 +25,6 @@
   "apt": "Apt, Suite, Bldg (optional)",
   "zipCode": "Zip Code",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+  "changeLanguage": "Change Language"
 }

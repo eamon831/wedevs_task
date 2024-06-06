@@ -6,9 +6,11 @@ import '/app/my_app.dart';
 import '/flavors/build_config.dart';
 import '/flavors/env_config.dart';
 import '/flavors/environment.dart';
+import 'app/session_manager/session_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SessionManager().init();
   await initialize();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
@@ -22,6 +24,12 @@ Future<void> main() async {
     envType: Environment.production,
     envConfig: prodConfig,
   );
+  final prefs = SessionManager();
+  final lang = await prefs.getLanguage();
 
-  runApp(const MyApp());
+  runApp(
+    MyApp(
+      lang: lang,
+    ),
+  );
 }

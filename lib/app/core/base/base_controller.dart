@@ -89,12 +89,13 @@ abstract class BaseController extends GetxController {
     return InternetConnectionChecker().hasConnection;
   }
 
-  void changeLocale() {
+  Future<void> changeLocale() async {
     Get.updateLocale(
       Get.locale == const Locale('en', 'US')
           ? const Locale('bn', 'BD')
           : const Locale('en', 'US'),
     );
+    await prefs.setLanguage(Get.locale!.languageCode);
   }
 
   Future<void> showLoader() async {

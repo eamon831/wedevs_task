@@ -87,4 +87,14 @@ class SessionManager {
     final user = prefs.getString(prefsUser);
     return user != null ? jsonDecode(user) as Map<String, dynamic> : {};
   }
+
+  /// set language
+  Future<void> setLanguage(String language) async {
+    await prefs.setString(prefLang, language);
+  }
+
+  /// get language
+  Future<String> getLanguage() async {
+    return prefs.getString(prefLang)??'en';
+  }
 }

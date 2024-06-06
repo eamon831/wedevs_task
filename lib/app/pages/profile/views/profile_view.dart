@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:wedevs_task/app/core/values/text_styles.dart';
 import 'package:wedevs_task/app/core/widget/asset_image_view.dart';
@@ -38,7 +39,6 @@ class ProfileView extends BaseView<ProfileController> {
             fileName: 'ic_person.svg',
           ),
           40.height,
-
           Center(
             child: Column(
               children: [
@@ -85,6 +85,18 @@ class ProfileView extends BaseView<ProfileController> {
                 },
               ).toList(),
             ),
+          ),
+          20.height,
+          BaseButton(
+            buttonText: appLocalization.changeLanguage,
+            bgColor: Colors.transparent,
+            borderColor: const Color(0xFFbababa),
+            customButtonTextStyle: GoogleFonts.lato(
+              fontSize: 17.36,
+              fontWeight: FontWeight.w700,
+              color: const Color(0xFF607374),
+            ),
+            onPressed: controller.changeLocale,
           ),
           20.height,
         ],

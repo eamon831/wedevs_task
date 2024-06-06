@@ -9,7 +9,11 @@ import 'bindings/initial_binding.dart';
 import 'core/values/app_colors.dart';
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  final String lang;
+  const MyApp({
+    required this.lang,
+    super.key,
+  });
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -28,6 +32,7 @@ class _MyAppState extends State<MyApp> {
       getPages: AppPages.routes,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: _getSupportedLocal(),
+      locale: Locale(widget.lang),
       theme: ThemeData(
         primarySwatch: AppColors.colorPrimarySwatch,
         visualDensity: VisualDensity.adaptivePlatformDensity,
