@@ -34,22 +34,22 @@ class RootView extends BaseView<RootController> {
     return BottomNavBar(onItemSelected: controller.onMenuSelected);
   }
 
-  final HomeView homeView = HomeView();
+  HomeView? homeView;
   CategoryView? categoryView;
-  ProductSearchView? productSearchView;
+  final ProductSearchView productSearchView = ProductSearchView();
   CartView? cartView;
   ProfileView? profileView;
 
   Widget getPageOnSelectedMenu(MenuCode menuCode) {
     switch (menuCode) {
       case MenuCode.home:
-        return homeView;
+        homeView ??= HomeView();
+        return homeView!;
       case MenuCode.category:
         categoryView ??= CategoryView();
         return categoryView!;
       case MenuCode.productSearch:
-        productSearchView ??= ProductSearchView();
-        return productSearchView!;
+        return productSearchView;
       case MenuCode.cart:
         cartView ??= CartView();
         return cartView!;

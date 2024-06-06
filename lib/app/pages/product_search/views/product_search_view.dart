@@ -13,7 +13,11 @@ class ProductSearchView extends BaseView<ProductSearchController> {
   
   @override
   Widget body(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        Text('ProductSearchView'),
+      ],
+    );
   }
 }
   
