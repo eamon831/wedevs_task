@@ -29,5 +29,11 @@
   "changeLanguage": "Change Language",
   "productList": "Product List",
   "filter": "Filter",
-  "sortBy": "Sort By"
+  "sortBy": "Sort By",
+  "newest": "Newest",
+  "oldest": "Oldest",
+    "priceLowToHigh": "Price low > High",
+    "priceHighToLow": "Price high > Low",
+  "bestSelling": "Best Selling",
+  "apply": "Apply"
 }

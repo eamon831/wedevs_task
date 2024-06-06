@@ -74,13 +74,16 @@ class ProductSearchView extends BaseView<ProductSearchController> {
             ),
             child: Row(
               children: [
-                const SizedBox(
-                  height: 16,
-                  width: 16,
-                  child: AssetImageView(
-                    fileName: 'ic_filter.svg',
-                    fit: BoxFit.contain,
-                    color: Color(0xFFB6BED4),
+                InkWell(
+                  onTap: () => controller.filterProducts(context),
+                  child: const SizedBox(
+                    height: 16,
+                    width: 16,
+                    child: AssetImageView(
+                      fileName: 'ic_filter.svg',
+                      fit: BoxFit.contain,
+                      color: Color(0xFFB6BED4),
+                    ),
                   ),
                 ),
                 11.width,
@@ -211,9 +214,7 @@ class ProductSearchView extends BaseView<ProductSearchController> {
                                       size: 10,
                                     );
                                   },
-                                  onRatingUpdate: (rating) {
-                                    print(rating);
-                                  },
+                                  onRatingUpdate: (rating) {},
                                 ),
                               ],
                             ),

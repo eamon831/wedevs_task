@@ -29,5 +29,11 @@
   "changeLanguage": "ভাষা পরিবর্তন করুন",
     "productList": "পণ্যের তালিকা",
     "filter": "ফিল্টার",
-    "sortBy": "দ্বারা বাছাই করুন"
+    "sortBy": "দ্বারা বাছাই করুন",
+    "newest": "নতুন",
+    "oldest": "প্রাচীন",
+    "priceLowToHigh": "মূল্য: কম থেকে বেশি",
+    "priceHighToLow": "মূল্য: বেশি থেকে কম",
+    "bestSelling": "সেরা বিক্রয়",
+    "apply": "প্রয়োগ করুন"
 }
