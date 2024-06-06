@@ -12,10 +12,14 @@ class ProductSearchController extends BaseController {
   }
 
   Future<void> fetchProducts() async {
-    final list = await services.fetchProducts();
-    if (list != null) {
-      products.value ??= [];
-      products.value = list;
-    }
+    await dataFetcher(
+      () async {
+        final list = await services.fetchProducts();
+        if (list != null) {
+          products.value ??= [];
+          products.value = list;
+        }
+      },
+    );
   }
 }

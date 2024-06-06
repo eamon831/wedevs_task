@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -132,9 +134,13 @@ class ProductSearchView extends BaseView<ProductSearchController> {
                     crossAxisCount: 2,
                   ),
                   itemCount: controller.products.value?.length ?? 0,
+                  mainAxisSpacing: 14.01,
+                  crossAxisSpacing: 14.5,
                   itemBuilder: (context, index) {
-                    return Container(
-                      padding: const EdgeInsets.all(16),
+                    final item = controller.products.value![index];
+                    final rating =
+                        double.tryParse(item.averageRating ?? '0') ?? 0;
+                    return DecoratedBox(
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
@@ -148,6 +154,71 @@ class ProductSearchView extends BaseView<ProductSearchController> {
                             offset: Offset(0, 3),
                             blurRadius: 4,
                           ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: startMAA,
+                        crossAxisAlignment: startCAA,
+                        children: [
+                          SizedBox(
+                            height: 177,
+                            width: 160,
+                            //image from network
+                            child: Image.network(
+                              item.images?[0].src ?? '',
+                              errorBuilder: (context, error, stackTrace) {
+                                return const AssetImageView(
+                                  fileName: 'even_product_img.png',
+                                );
+                              },
+                            ),
+                          ),
+                          10.height,
+                          Container(
+                            padding: const EdgeInsets.only(
+                              left: 19,
+                            ),
+                            color: Colors.transparent,
+                            child: Column(
+                              mainAxisAlignment: startMAA,
+                              crossAxisAlignment: startCAA,
+                              children: [
+                                SizedBox(
+                                  height: 32,
+                                  child: Text(
+                                    item.name ?? '',
+                                    style: GoogleFonts.lato(
+                                      color: const Color(0xFF222455),
+                                      fontSize: 15.63,
+                                      fontWeight: FontWeight.w700,
+                                      height: 1.1,
+                                    ),
+                                  ),
+                                ),
+                                8.height,
+                                HtmlWidget(item.priceHtml ?? ''),
+                                12.height,
+                                RatingBar.builder(
+                                  initialRating: rating,
+                                  minRating: 1,
+                                  allowHalfRating: true,
+                                  ignoreGestures: true,
+                                  itemSize: 10,
+                                  itemBuilder: (context, _) {
+                                    return const Icon(
+                                      Icons.star,
+                                      color: Color(0xFFF5A623),
+                                      size: 10,
+                                    );
+                                  },
+                                  onRatingUpdate: (rating) {
+                                    print(rating);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                          18.height,
                         ],
                       ),
                     );
