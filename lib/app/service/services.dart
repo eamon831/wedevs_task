@@ -28,11 +28,11 @@ class Services {
     }
   }
 
-  Future<bool> registerUser(
-    String username,
-    String email,
-    String password,
-  ) async {
+  Future<bool> registerUser({
+    required String username,
+    required String email,
+    required String password,
+  }) async {
     final data = {
       'username': username,
       'email': email,
@@ -81,105 +81,26 @@ class Services {
     return null;
   }
 
-  Future<int> uploadProfilePicture(String token, File imageFile) async {
-    print('Uploading profile picture');
-    print('Token: $token');
-    print('Image file: ${imageFile.path}');
-
-    print('url: ${BuildConfig.instance.config.baseUrl}wp/v2/media');
-
-    final dio = Dio();
-    final url = '${BuildConfig.instance.config.baseUrl}wp/v2/media';
-    final formData = FormData.fromMap(
-      {
-        'file': await MultipartFile.fromFile(
-          imageFile.path,
-          filename: imageFile.path.split('/').last,
-        ),
-      },
-    );
-
-    try {
-      final response = await dio.post(
-        url,
-        data: formData,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-            'Content-Disposition':
-                'attachment; filename=${imageFile.path.split('/').last}',
-          },
-        ),
-      );
-
-      print(response.data);
-
-      if (response.statusCode == 201) {
-        return response.data['id'];
-      } else {
-        throw Exception('Failed to upload profile picture: ${response.data}');
-      }
-    } catch (e) {
-      throw Exception('Exception occurred: $e');
-    }
-  }
-
-  Future<void> assignProfilePicture(
-    String token,
-    int userId,
-    int mediaId,
-  ) async {
-    print('Assigning profile picture');
-    print('Token: $token');
-    print('User ID: $userId');
-    print('Media ID: $mediaId');
-
-    final dioo = Dio();
-    final url = '${BuildConfig.instance.config.baseUrl}wp/v2/users/$userId';
-    final data = {
-      'meta': {
-        'profile_picture': mediaId,
-      },
-    };
-
-    try {
-      final response = await dioo.post(
-        url,
-        data: data,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-            'Content-Type': 'application/json',
-          },
-        ),
-      );
-      if (response.statusCode == 200) {
-        print('Profile picture assigned successfully');
-      } else {
-        throw Exception('Failed to assign profile picture: ${response.data}');
-      }
-    } catch (e) {
-      throw Exception('Exception occurred: $e');
-    }
-  }
-
-  Future<void> registerAndUploadProfilePicture(
+  Future<bool> registerAndUploadProfilePicture(
     String username,
     String email,
     String password,
-    File profilePicture,
+    File value,
   ) async {
-    try {
-      await registerUser(username, email, password);
+    final isRegistered = await registerUser(
+      username: username,
+      email: email,
+      password: password,
+    );
+    if (isRegistered) {
       final token = await authenticateUser(
         username: username,
         password: password,
       );
-      final mediaId = await uploadProfilePicture(token!, profilePicture);
-      // Replace `1` with the actual user ID if needed
-      await assignProfilePicture(token, 1, mediaId);
-    } catch (e) {
-      print('Error: $e');
+      if (token != null) {
+        return true;
+      }
     }
+    return false;
   }
 }
