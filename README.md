@@ -195,7 +195,7 @@ The project follows a modular structure, and key components are organized as fol
 ## State Management
 
 This project uses **GetX** for state management. The relevant files are located in the `lib/app/core/base` directory:
-
+- `bindings.dart`: Contains the bindings for the pages
 - `base_controller.dart`: Controller for managing the state of the pages
 - `base_view.dart`: Base view for the pages
 - `base_widget_mixin.dart`: Mixin for common widgets
