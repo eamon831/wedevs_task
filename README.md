@@ -192,3 +192,25 @@ The project follows a modular structure, and key components are organized as fol
 ├── main_dev.dart
 └── main_prod.dar
  ```
+## State Management
+
+This project uses **GetX** for state management. The relevant files are located in the `lib/app/core/base` directory:
+
+- `base_controller.dart`: Controller for managing the state of the pages
+- `base_view.dart`: Base view for the pages
+- `base_widget_mixin.dart`: Mixin for common widgets
+- `mixins`: Contains different mixins for the project
+- `core_model`: Contains the page state and page status models and logged user model
+- `pages`: Contains the different modules of the project
+- `utils`: Contains utility modules and helper functions used across the app
+- `values`: Contains the app colors, values, and text styles
+- `widget`: Contains commonly used widgets across the app
+- `model`: Contains the models used in the app
+- `service`: Contains the API services used in the app
+- `session_manager`: Contains the session manager used in the app
+- `shared_views`: Contains the shared views used in the app
+
+## Libraries Used
+
+- **[get](https://pub.dev/packages/get)**: State management library for Flutter with a focus on simplicity and performance.
+- **[nb_utils](https://pub.dev/packages/nb_utils)**: A package for common utility methods and widgets.
