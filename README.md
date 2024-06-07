@@ -19,6 +19,8 @@ then run the project from the terminal by running the command "flutter run  lib/
 
 # Tested on Android and iOS(only on simulator)
 
+## Note : I tried to implement pixel perfect design not the responsive design. Specifically all pages are Implemented with ListView so you have to scroll.
+
 ## Project Structure
 
 The project follows a modular structure, and key components are organized as follows:
