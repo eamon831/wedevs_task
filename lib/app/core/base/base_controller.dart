@@ -102,7 +102,7 @@ abstract class BaseController extends GetxController {
     Future.delayed(
       Duration.zero,
       () => Get.to(
-        LoaderScreen(),
+        const LoaderScreen(),
         opaque: false,
         fullscreenDialog: true,
       ),

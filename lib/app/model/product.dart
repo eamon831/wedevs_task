@@ -190,7 +190,7 @@ class Product {
         downloads: json['downloads'] == null
             ? []
             : List<Download>.from(
-                json['downloads']!.map((x) => Download.fromJson(x))),
+                json['downloads']!.map((x) => Download.fromJson(x)),),
         downloadLimit: json['download_limit'],
         downloadExpiry: json['download_expiry'],
         externalUrl: json['external_url'],
@@ -232,14 +232,14 @@ class Product {
         categories: json['categories'] == null
             ? []
             : List<Category>.from(
-                json['categories']!.map((x) => Category.fromJson(x))),
+                json['categories']!.map((x) => Category.fromJson(x)),),
         tags: json['tags'] == null
             ? []
             : List<dynamic>.from(json['tags']!.map((x) => x)),
         images: json['images'] == null
             ? []
             : List<ImageData>.from(
-                json['images']!.map((x) => ImageData.fromJson(x))),
+                json['images']!.map((x) => ImageData.fromJson(x)),),
         attributes: json['attributes'] == null
             ? []
             : List<dynamic>.from(json['attributes']!.map((x) => x)),
@@ -256,7 +256,7 @@ class Product {
         metaData: json['meta_data'] == null
             ? []
             : List<MetaData>.from(
-                json['meta_data']!.map((x) => MetaData.fromJson(x))),
+                json['meta_data']!.map((x) => MetaData.fromJson(x)),),
         store: json['store'] == null ? null : Store.fromJson(json['store']),
         links: json['_links'] == null ? null : Links.fromJson(json['_links']),
       );

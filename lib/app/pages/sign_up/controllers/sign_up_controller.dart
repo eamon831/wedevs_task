@@ -32,7 +32,7 @@ class SignUpController extends BaseController {
   }
 
   bool _validateInputs(
-      String username, String email, String password, String confirmPassword) {
+      String username, String email, String password, String confirmPassword,) {
     if (username.isEmpty) {
       _showErrorSnackbar('Please enter a username');
       return false;

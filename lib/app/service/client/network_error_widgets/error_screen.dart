@@ -40,7 +40,7 @@ class _ErrorScreenState extends State<ErrorScreen> {
                 height: 20,
               ),
               Text(
-                '${widget.errorMessage}',
+                widget.errorMessage,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

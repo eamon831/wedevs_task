@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wedevs_task/app/core/widget/asset_image_view.dart';
 import 'package:wedevs_task/app/pages/product_search/views/product_search_view.dart';
 
 import '/app/core/base/base_view.dart';

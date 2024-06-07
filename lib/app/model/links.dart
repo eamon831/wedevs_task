@@ -13,11 +13,11 @@ class Links {
     self: json['self'] == null
         ? []
         : List<Collection>.from(
-        json['self']!.map((x) => Collection.fromJson(x))),
+        json['self']!.map((x) => Collection.fromJson(x)),),
     collection: json['collection'] == null
         ? []
         : List<Collection>.from(
-        json['collection']!.map((x) => Collection.fromJson(x))),
+        json['collection']!.map((x) => Collection.fromJson(x)),),
   );
 
   Map<String, dynamic> toJson() => {

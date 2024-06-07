@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:wedevs_task/app/core/core_model/logged_user.dart';
-import 'package:wedevs_task/app/session_manager/session_manager.dart';
 
 import '/app/core/base/base_controller.dart';
 import '/app/routes/app_pages.dart';

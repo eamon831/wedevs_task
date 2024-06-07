@@ -250,7 +250,7 @@ class PrettyDioLogger extends Interceptor {
   }
 
   void _printList(List list, {int tabs = initialTab}) {
-    final int tabsCount = 2;
+    const int tabsCount = 2;
     list.asMap().forEach((i, dynamic e) {
       final isLast = i == list.length - 1;
       if (e is Map) {
@@ -273,7 +273,7 @@ class PrettyDioLogger extends Interceptor {
   }
 
   bool _canFlattenList(List list) {
-    final int maxListLength = 10;
+    const int maxListLength = 10;
 
     return list.length < maxListLength && list.toString().length < maxWidth;
   }
