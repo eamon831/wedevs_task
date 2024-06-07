@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:wedevs_task/app/core/core_model/logged_user.dart';
 import 'package:wedevs_task/app/model/product.dart';
 
@@ -73,6 +74,14 @@ class Services {
     );
     if (response.statusCode == 200) {
       final responseMap = response.data as Map<String, dynamic>;
+      final token = responseMap['token'] as String;
+      final decodedJWT = JwtDecoder.decode(token);
+
+      if (decodedJWT?['data']?['user']?['id'] == null) {
+        return false;
+      }
+
+      responseMap['user_id'] = decodedJWT!['data']['user']['id'];
       pref
         ..setIsLogin(isLogin: true)
         ..setUser(responseMap)
@@ -131,5 +140,31 @@ class Services {
   Future<dynamic> parseJsonFromAssets(String assetsPath) async {
     final jsonStr = await rootBundle.loadString(assetsPath);
     return jsonDecode(jsonStr);
+  }
+
+  Future<bool> updateProfile({
+    required String email,
+    required String fullName,
+    required String streetAddress,
+    required String apt,
+    required String zip,
+  }) async {
+    final data = {
+      'email': email,
+      'fullName': fullName,
+      'streetAddress': streetAddress,
+      'apt': apt,
+      'zip': zip,
+    };
+
+    data.removeWhere((key, value) => value.isEmpty);
+
+    final response = await dio.put(
+      APIType.protected,
+      endpointUpdateProfile,
+      data,
+    );
+
+    return Future.value(true);
   }
 }

@@ -1,8 +1,8 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../views/account_view.dart';
+
 import '/app/core/base/base_controller.dart';
+import '/app/shared_views/account_view/account_view.dart';
 
 enum ProfileButtonEnum { account, passwords, notification, wishlist }
 
@@ -71,7 +71,10 @@ class ProfileButton {
           fileName: 'ic_person.svg',
           onTap: onTap,
           profileButtonEnum: ProfileButtonEnum.account,
-          child: AccountView(),
+          child: SizedBox(
+            height: Get.height,
+            child: AccountView(),
+          ),
         );
 
   ProfileButton.passwords({

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:wedevs_task/app/shared_views/account_view/account_view_controller.dart';
 
 import '/app/pages/cart/controllers/cart_controller.dart';
 import '/app/pages/category/controllers/category_controller.dart';
@@ -33,6 +34,10 @@ class RootBinding extends Bindings {
       )
       ..lazyPut<ProfileController>(
         ProfileController.new,
+        fenix: true,
+      )
+      ..lazyPut<AccountViewController>(
+        AccountViewController.new,
         fenix: true,
       );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wedevs_task/app/core/core_model/logged_user.dart';
 import 'package:wedevs_task/app/routes/app_pages.dart';
 import '/app/core/base/base_view.dart';
 import '/app/pages/cart/controllers/cart_controller.dart';
@@ -23,6 +24,12 @@ class CartView extends BaseView<CartController> {
             Get.offAllNamed(Routes.splash);
           },
           child: const Text('Restart app'),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            print(LoggedUser().toJson());
+          },
+          child: const Text('Print user data'),
         ),
         Text(
           controller.loggedUser.userNiceName ?? 'user null',

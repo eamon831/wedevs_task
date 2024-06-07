@@ -1,44 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:wedevs_task/app/core/core_model/logged_user.dart';
+import 'package:wedevs_task/app/core/base/base_view.dart';
 import 'package:wedevs_task/app/core/widget/base_button.dart';
 
-class AccountView extends StatelessWidget {
-  AccountView({
-    super.key,
-  });
-  LoggedUser get user => LoggedUser();
-  final emailController = TextEditingController();
-  final fullNameController = TextEditingController();
-  final streetAddressController = TextEditingController();
-  final aptController = TextEditingController();
-  final zipController = TextEditingController();
-  AppLocalizations get appLocalization => AppLocalizations.of(Get.context!)!;
+import 'account_view_controller.dart';
+
+class AccountView extends BaseView<AccountViewController> {
+  AccountView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  PreferredSizeWidget? appBar(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Color pageBackgroundColor() {
+    // TODO: implement pageBackgroundColor
+    return Colors.white;
+  }
+
+  @override
+  Widget body(BuildContext context) {
     return Column(
       children: [
         _textFormField(
-          controller: emailController,
+          controller: controller.emailController,
           labelText: appLocalization.email,
           hintText: 'youremail@xmail.com',
         ),
         _textFormField(
-          controller: fullNameController,
+          controller: controller.fullNameController,
           labelText: appLocalization.fullName,
           hintText: 'William Bennett',
         ),
         _textFormField(
-          controller: streetAddressController,
+          controller: controller.streetAddressController,
           labelText: appLocalization.streetAddress,
           hintText: '465 Nolan Causeway Suite 079',
         ),
         _textFormField(
-          controller: aptController,
+          controller: controller.aptController,
           labelText: appLocalization.apt,
           hintText: 'Unit 512',
         ),
@@ -46,7 +48,7 @@ class AccountView extends StatelessWidget {
           children: [
             Expanded(
               child: _textFormField(
-                controller: zipController,
+                controller: controller.zipController,
                 labelText: appLocalization.zipCode,
                 hintText: '77017',
               ),
@@ -87,7 +89,7 @@ class AccountView extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   color: const Color(0xFFFFFFFF),
                 ),
-                onPressed: () {},
+                onPressed: controller.updateProfile,
               ),
             ),
           ],
