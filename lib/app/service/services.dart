@@ -22,6 +22,11 @@ class Services {
   );
 
   Future<Map<String, dynamic>> _buildHeader() async {
+    if (LoggedUser().token?.isNotEmpty ?? false) {
+      return {
+        'Authorization': 'Bearer ${LoggedUser().token}',
+      };
+    }
     return {};
   }
 
@@ -149,6 +154,11 @@ class Services {
     required String apt,
     required String zip,
   }) async {
+    final isLogin = await pref.getIsLogin();
+    if (!isLogin) {
+      toast('User is not logged in');
+      return false;
+    }
     final data = {
       'email': email,
       'fullName': fullName,
@@ -159,12 +169,26 @@ class Services {
 
     data.removeWhere((key, value) => value.isEmpty);
 
-    final response = await dio.put(
+    final response = await dio.post(
       APIType.protected,
-      endpointUpdateProfile,
+      endpointUpdateProfile + LoggedUser().userId.toString(),
       data,
+      headers: await _buildHeader(),
     );
 
-    return Future.value(true);
+    if (response.statusCode == 200) {
+      //update user data in shared preference
+      if (isLogin) {
+        final username = await pref.getLoggedUserName();
+        final password = await pref.getLoggedUserPassword();
+        final isAuthenticated = await authenticateUser(
+          username: username!,
+          password: password!,
+        );
+        return isAuthenticated;
+      }
+    }
+
+    return false;
   }
 }

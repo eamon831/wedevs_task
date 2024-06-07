@@ -11,7 +11,6 @@ class AccountViewController extends BaseController {
   Future<void> updateProfile() async {
     await dataFetcher(
       () async {
-        print('updateProfile');
         await services.updateProfile(
           email: emailController.text,
           fullName: fullNameController.text,
