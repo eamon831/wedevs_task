@@ -99,6 +99,18 @@ class ProfileView extends BaseView<ProfileController> {
             ),
             onPressed: controller.changeLocale,
           ),
+          10.height,
+          BaseButton(
+            buttonText: appLocalization.logout,
+            bgColor: Colors.red,
+            borderColor: const Color(0xFFbababa),
+            customButtonTextStyle: GoogleFonts.lato(
+              fontSize: 17.36,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+            ),
+            onPressed: controller.logout,
+          ),
           20.height,
         ],
       ),

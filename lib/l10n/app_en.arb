@@ -37,5 +37,6 @@
   "bestSelling": "Best Selling",
   "apply": "Apply",
   "firstName": "First Name",
-    "lastName": "Last Name"
+    "lastName": "Last Name",
+    "logout": "Logout"
 }

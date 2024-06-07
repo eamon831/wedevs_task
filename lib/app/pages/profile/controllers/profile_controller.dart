@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wedevs_task/app/core/values/app_assets.dart';
+import 'package:wedevs_task/app/routes/app_pages.dart';
 
 import '/app/core/base/base_controller.dart';
 import '/app/shared_views/account_view/account_view.dart';
@@ -43,6 +44,11 @@ class ProfileController extends BaseController {
   @override
   Future<void> onInit() async {
     super.onInit();
+  }
+
+  Future<void> logout() async {
+    await prefs.setIsLogin(isLogin: false);
+    Get.offAllNamed(Routes.splash);
   }
 }
 
