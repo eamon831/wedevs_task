@@ -170,8 +170,6 @@ class Services {
 
     data.removeWhere((key, value) => value?.isEmptyOrNull ?? true);
 
-    print(data);
-
     final response = await dio.post(
       APIType.protected,
       endpointUpdateProfile + LoggedUser().userId.toString(),

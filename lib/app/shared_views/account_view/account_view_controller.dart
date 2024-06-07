@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:wedevs_task/app/core/base/base_controller.dart';
 
 class AccountViewController extends BaseController {
@@ -31,7 +32,7 @@ class AccountViewController extends BaseController {
   Future<void> updateProfile() async {
     await dataFetcher(
       () async {
-        await services.updateProfile(
+        final isUpdated = await services.updateProfile(
           email: null,
           firstName: firstNameController.text,
           lastName: lastNameController.text,
@@ -39,6 +40,9 @@ class AccountViewController extends BaseController {
           apt: null,
           zip: null,
         );
+        if (isUpdated) {
+           toast('Profile updated successfully');
+        }
       },
     );
   }
