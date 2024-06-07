@@ -35,5 +35,7 @@
     "priceLowToHigh": "Price low > High",
     "priceHighToLow": "Price high > Low",
   "bestSelling": "Best Selling",
-  "apply": "Apply"
+  "apply": "Apply",
+  "firstName": "First Name",
+    "lastName": "Last Name"
 }

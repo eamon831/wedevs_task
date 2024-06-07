@@ -140,10 +140,12 @@ abstract class BaseController extends GetxController {
     try {
       await fetchDataFunction();
     } finally {
-      if (!(ErrorCatcher().hasError ?? false) && shouldShowLoader) {
+      if (shouldShowLoader) {
         closeLoader();
-      } else if (shouldShowLoader) {
-        closeLoader();
+      }
+      final hasError = ErrorCatcher().hasError ?? false;
+
+      if (hasError) {
         _handleException(
           exception: ErrorCatcher().exception!,
           stackTrace: ErrorCatcher().stackTrace!,

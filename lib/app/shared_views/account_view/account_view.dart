@@ -16,7 +16,6 @@ class AccountView extends BaseView<AccountViewController> {
 
   @override
   Color pageBackgroundColor() {
-    // TODO: implement pageBackgroundColor
     return Colors.white;
   }
 
@@ -24,22 +23,27 @@ class AccountView extends BaseView<AccountViewController> {
   Widget body(BuildContext context) {
     return Column(
       children: [
-        _textFormField(
+        ProfileTextFromField(
           controller: controller.emailController,
           labelText: appLocalization.email,
           hintText: 'youremail@xmail.com',
         ),
-        _textFormField(
-          controller: controller.fullNameController,
-          labelText: appLocalization.fullName,
-          hintText: 'William Bennett',
+        ProfileTextFromField(
+          controller: controller.firstNameController,
+          labelText: appLocalization.firstName,
+          hintText: 'William',
         ),
-        _textFormField(
+        ProfileTextFromField(
+          controller: controller.lastNameController,
+          labelText: appLocalization.lastName,
+          hintText: 'Bennett',
+        ),
+        ProfileTextFromField(
           controller: controller.streetAddressController,
           labelText: appLocalization.streetAddress,
           hintText: '465 Nolan Causeway Suite 079',
         ),
-        _textFormField(
+        ProfileTextFromField(
           controller: controller.aptController,
           labelText: appLocalization.apt,
           hintText: 'Unit 512',
@@ -47,7 +51,7 @@ class AccountView extends BaseView<AccountViewController> {
         Row(
           children: [
             Expanded(
-              child: _textFormField(
+              child: ProfileTextFromField(
                 controller: controller.zipController,
                 labelText: appLocalization.zipCode,
                 hintText: '77017',
@@ -97,12 +101,22 @@ class AccountView extends BaseView<AccountViewController> {
       ],
     );
   }
+}
 
-  Widget _textFormField({
-    required TextEditingController controller,
-    required String labelText,
-    required String hintText,
-  }) {
+class ProfileTextFromField extends StatelessWidget {
+  final TextEditingController controller;
+  final String labelText;
+  final String hintText;
+
+  const ProfileTextFromField({
+    required this.controller,
+    required this.labelText,
+    required this.hintText,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -117,6 +131,7 @@ class AccountView extends BaseView<AccountViewController> {
         ),
         12.height,
         TextFormField(
+          controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
             contentPadding: const EdgeInsets.symmetric(

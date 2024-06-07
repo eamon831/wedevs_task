@@ -148,11 +148,12 @@ class Services {
   }
 
   Future<bool> updateProfile({
-    required String email,
-    required String fullName,
-    required String streetAddress,
-    required String apt,
-    required String zip,
+    required String? email,
+    required String? firstName,
+    required String? lastName,
+    required String? streetAddress,
+    required String? apt,
+    required String? zip,
   }) async {
     final isLogin = await pref.getIsLogin();
     if (!isLogin) {
@@ -161,18 +162,22 @@ class Services {
     }
     final data = {
       'email': email,
-      'fullName': fullName,
-      'streetAddress': streetAddress,
+      'first_name': firstName,
+      'last_name': lastName,
+      'street_address': streetAddress,
       'apt': apt,
       'zip': zip,
     };
 
-    data.removeWhere((key, value) => value.isEmpty);
+    data.removeWhere((key, value) => value?.isEmptyOrNull ?? true);
+
+    print(data);
 
     final response = await dio.post(
       APIType.protected,
       endpointUpdateProfile + LoggedUser().userId.toString(),
       data,
+      query: data,
       headers: await _buildHeader(),
     );
 

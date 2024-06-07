@@ -35,5 +35,7 @@
     "priceLowToHigh": "মূল্য: কম থেকে বেশি",
     "priceHighToLow": "মূল্য: বেশি থেকে কম",
     "bestSelling": "সেরা বিক্রয়",
-    "apply": "প্রয়োগ করুন"
+    "apply": "প্রয়োগ করুন",
+    "firstName": "নামের প্রথম অংশ",
+    "lastName": "নামের শেষাংশ"
 }

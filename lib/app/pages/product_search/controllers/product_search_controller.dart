@@ -26,13 +26,15 @@ class ProductSearchController extends BaseController {
   }
 
   Future<void> filterProducts(BuildContext context) async {
-    final result = await  Get.bottomSheet(
+    final result = await Get.bottomSheet(
       ProductFilterBottomSheet(),
     );
     if (result != null) {
-      print(result);
-    }else{
-      print('result is null');
+      // this is supposed to be a api based filter but we don't have the api
+      // so we are just filtering the list locally
+   
+    } else {
+      fetchProducts();
     }
   }
 }
