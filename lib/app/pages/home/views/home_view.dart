@@ -13,8 +13,14 @@ class HomeView extends BaseView<HomeController> {
 
   @override
   Widget body(BuildContext context) {
-    return const Column(
-      children: [],
+    return Center(
+      child: Text(
+        appLocalization.bottomNavHome,
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }

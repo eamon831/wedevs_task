@@ -13,7 +13,15 @@ class CategoryView extends BaseView<CategoryController> {
   
   @override
   Widget body(BuildContext context) {
-    return Container();
+    return  Center(
+      child: Text(
+        appLocalization.bottomNavCategory,
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
   }
 }
   

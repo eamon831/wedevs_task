@@ -16,25 +16,14 @@ class CartView extends BaseView<CartController> {
 
   @override
   Widget body(BuildContext context) {
-    return Column(
-      children: [
-        ElevatedButton(
-          onPressed: () async {
-            await controller.prefs.setIsLogin(isLogin: false);
-            Get.offAllNamed(Routes.splash);
-          },
-          child: const Text('Restart app'),
+    return Center(
+      child: Text(
+        appLocalization.bottomNavCart,
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
         ),
-        ElevatedButton(
-          onPressed: () async {
-            print(LoggedUser().toJson());
-          },
-          child: const Text('Print user data'),
-        ),
-        Text(
-          controller.loggedUser.userNiceName ?? 'user null',
-        ),
-      ],
+      ),
     );
   }
 }
