@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,15 +37,31 @@ class ProfileView extends BaseView<ProfileController> {
             ),
           ),
           41.height,
-          const AssetImageView(
-            fileName: AppAssets.icPerson,
+          DottedBorder(
+            borderType: BorderType.Circle,
+            padding: const EdgeInsets.all(8),
+            color: const Color(0xFFFFADAD),
+            strokeWidth: 2,
+            dashPattern: const [6, 4],
+            child: Center(
+              child: SizedBox(
+                height: 112,
+                width: 112,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(60),
+                  child: const AssetImageView(
+                    fileName: AppAssets.icProfilePic,
+                  ),
+                ),
+              ),
+            ),
           ),
           40.height,
           Center(
             child: Column(
               children: [
                 Text(
-                  controller.loggedUser.userNiceName ?? 'John Smith',
+                  controller.loggedUser.userNiceName ?? '',
                   style: titleStyle.copyWith(
                     fontSize: 24,
                     fontWeight: FontWeight.w900,
@@ -53,7 +70,7 @@ class ProfileView extends BaseView<ProfileController> {
                 ),
                 6.height,
                 Text(
-                  controller.loggedUser.userEmail ?? 'info@johnsmith.com',
+                  controller.loggedUser.userEmail ?? '',
                   style: titleStyle.copyWith(
                     fontSize: 15,
                     fontWeight: FontWeight.w400,

@@ -25,5 +25,6 @@ class AppAssets {
   static const icSearchWithBgSvg = 'ic_search_with_bg.svg';
   static const icSelected = 'ic_selected.svg';
   static const icUnselected = 'ic_unselected.svg';
+  static const icProfilePic = 'ic_profile_pic.png';
   static const launcherIcon = 'launcher_icon.png';
 }
