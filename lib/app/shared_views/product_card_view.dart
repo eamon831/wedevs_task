@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:wedevs_task/app/core/widget/common_cache_image_widget.dart';
 import '/app/core/values/app_assets.dart';
 import '/app/core/widget/asset_image_view.dart';
 import '/app/model/product.dart';
@@ -37,18 +38,10 @@ class ProductCardView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 177,
+          commonCacheImageWidget(
+            item.images?[0].src,
+            177,
             width: 160,
-            //image from network
-            child: Image.network(
-              item.images?[0].src ?? '',
-              errorBuilder: (context, error, stackTrace) {
-                return const AssetImageView(
-                  fileName: AppAssets.evenProductImg,
-                );
-              },
-            ),
           ),
           10.height,
           Container(
