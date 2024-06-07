@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wedevs_task/app/core/values/app_assets.dart';
 
 import '/app/core/base/base_controller.dart';
 import '/app/shared_views/account_view/account_view.dart';
@@ -68,7 +69,7 @@ class ProfileButton {
     required String Function() title,
   }) : this(
           title: title,
-          fileName: 'ic_person.svg',
+          fileName: AppAssets.icPerson,
           onTap: onTap,
           profileButtonEnum: ProfileButtonEnum.account,
           child: SizedBox(
@@ -82,7 +83,7 @@ class ProfileButton {
     required String Function() title,
   }) : this(
           title: title,
-          fileName: 'ic_password.svg',
+          fileName: AppAssets.icPassword,
           onTap: onTap,
           profileButtonEnum: ProfileButtonEnum.passwords,
         );
@@ -92,7 +93,7 @@ class ProfileButton {
     required String Function() title,
   }) : this(
           title: title,
-          fileName: 'ic_bell.svg',
+          fileName: AppAssets.icBell,
           onTap: onTap,
           profileButtonEnum: ProfileButtonEnum.notification,
         );
@@ -103,7 +104,7 @@ class ProfileButton {
     bool isLast = false,
   }) : this(
           title: title,
-          fileName: 'ic_heart.svg',
+          fileName: AppAssets.icHeart,
           onTap: onTap,
           profileButtonEnum: ProfileButtonEnum.wishlist,
           isLast: isLast,

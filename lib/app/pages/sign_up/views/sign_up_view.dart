@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:wedevs_task/app/core/values/app_assets.dart';
 import '/app/core/base/base_view.dart';
 import '/app/core/widget/asset_image_view.dart';
 import '/app/core/widget/base_button.dart';
@@ -66,7 +67,7 @@ class SignUpView extends BaseView<SignUpController> {
                                     height: 26,
                                     width: 26,
                                     child: AssetImageView(
-                                      fileName: 'ic_person.svg',
+                                      fileName: AppAssets.icPerson,
                                     ),
                                   ),
                                 ),
@@ -82,7 +83,7 @@ class SignUpView extends BaseView<SignUpController> {
                 child: InkWell(
                   onTap: controller.pickProfilePic,
                   child: const AssetImageView(
-                    fileName: 'ic_image_pick.svg',
+                    fileName: AppAssets.icImagePick,
                     //width: 60,
                     //height: 60,
                   ),
@@ -95,14 +96,14 @@ class SignUpView extends BaseView<SignUpController> {
             controller: controller.nameController,
             hintText: appLocalization.name,
             validator: noValidator,
-            prefix: 'ic_person.svg',
+            prefix: AppAssets.icPerson,
           ),
           19.height,
           TextFormFieldWidget(
             controller: controller.emailController,
             hintText: appLocalization.email,
             validator: noValidator,
-            prefix: 'ic_email.svg',
+            prefix: AppAssets.icEmail,
           ),
           19.height,
           Obx(
@@ -112,7 +113,7 @@ class SignUpView extends BaseView<SignUpController> {
                 hintText: appLocalization.password,
                 validator: noValidator,
                 obscureText: !controller.showPassword.value,
-                prefix: 'ic_password.svg',
+                prefix: AppAssets.icPassword,
                 suffix: IconButton(
                   icon: Icon(
                     controller.showPassword.value
@@ -133,7 +134,7 @@ class SignUpView extends BaseView<SignUpController> {
                 hintText: appLocalization.confirmPassword,
                 validator: noValidator,
                 obscureText: !controller.showPassword.value,
-                prefix: 'ic_password.svg',
+                prefix: AppAssets.icPassword,
                 suffix: IconButton(
                   icon: Icon(
                     controller.showConfirmPassword.value
@@ -158,14 +159,14 @@ class SignUpView extends BaseView<SignUpController> {
               InkWell(
                 onTap: controller.signInWithFacebook,
                 child: const AssetImageView(
-                  fileName: 'ic_facebook.svg',
+                  fileName: AppAssets.icFacebook,
                 ),
               ),
               14.width,
               InkWell(
                 onTap: controller.signInWithGoogle,
                 child: const AssetImageView(
-                  fileName: 'ic_google.png',
+                  fileName: AppAssets.icGoogle,
                 ),
               ),
             ],

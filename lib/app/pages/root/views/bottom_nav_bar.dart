@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wedevs_task/app/core/values/app_assets.dart';
 
 import '/app/core/base/base_widget_mixin.dart';
 import '/app/core/values/app_values.dart';
@@ -44,11 +45,11 @@ class BottomNavBar extends StatelessWidget with BaseWidgetMixin {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _buildNavItem(0, 'ic_home.svg'),
-                  _buildNavItem(1, 'ic_category.svg'),
+                  _buildNavItem(0, AppAssets.icHome),
+                  _buildNavItem(1, AppAssets.icCategory),
                   const SizedBox(width: _floatingButtonSpaceWidth),
-                  _buildNavItem(3, 'ic_cart.svg'),
-                  _buildNavItem(4, 'ic_person.svg'),
+                  _buildNavItem(3, AppAssets.icCart),
+                  _buildNavItem(4, AppAssets.icPerson),
                 ],
               );
             },
@@ -56,7 +57,7 @@ class BottomNavBar extends StatelessWidget with BaseWidgetMixin {
         ),
         Positioned(
           top: _floatingButtonTopOffset,
-          child: _buildFloatingButton(2, 'ic_search_with_bg.svg'),
+          child: _buildFloatingButton(2, AppAssets.icSearchWithBgSvg),
         ),
       ],
     );

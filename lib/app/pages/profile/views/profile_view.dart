@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:wedevs_task/app/core/values/app_assets.dart';
 import 'package:wedevs_task/app/core/values/text_styles.dart';
 import 'package:wedevs_task/app/core/widget/asset_image_view.dart';
 import 'package:wedevs_task/app/core/widget/base_button.dart';
@@ -36,7 +37,7 @@ class ProfileView extends BaseView<ProfileController> {
           ),
           41.height,
           const AssetImageView(
-            fileName: 'ic_person.svg',
+            fileName: AppAssets.icPerson,
           ),
           40.height,
           Center(
@@ -143,14 +144,14 @@ class ProfileView extends BaseView<ProfileController> {
                             width: 12,
                             height: 7,
                             child: AssetImageView(
-                              fileName: 'ic_arrow_down.svg',
+                              fileName: AppAssets.icArrowDown,
                             ),
                           )
                         : const SizedBox(
                             width: 12,
                             height: 12,
                             child: AssetImageView(
-                              fileName: 'ic_arrow_right.svg',
+                              fileName: AppAssets.icArrowRight,
                             ),
                           );
                   },

@@ -5,6 +5,7 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:wedevs_task/app/core/values/app_assets.dart';
 import 'package:wedevs_task/app/core/values/text_styles.dart';
 import 'package:wedevs_task/app/core/widget/asset_image_view.dart';
 import 'package:wedevs_task/app/shared_views/product_card_view.dart';
@@ -44,7 +45,7 @@ class ProductSearchView extends BaseView<ProductSearchController> {
                 height: 22,
                 width: 22,
                 child: AssetImageView(
-                  fileName: 'ic_search.svg',
+                  fileName: AppAssets.icSearch,
                   color: Color(0xFF222455),
                 ),
               ),
@@ -81,7 +82,7 @@ class ProductSearchView extends BaseView<ProductSearchController> {
                     height: 16,
                     width: 16,
                     child: AssetImageView(
-                      fileName: 'ic_filter.svg',
+                      fileName: AppAssets.icFilter,
                       fit: BoxFit.contain,
                       color: Color(0xFFB6BED4),
                     ),
@@ -114,7 +115,7 @@ class ProductSearchView extends BaseView<ProductSearchController> {
                     height: 13.54,
                     width: 7.64,
                     child: AssetImageView(
-                      fileName: 'ic_arrow_down.svg',
+                      fileName: AppAssets.icArrowDown,
                       fit: BoxFit.contain,
                       color: Color(0xFFB6BED4),
                     ),
@@ -124,7 +125,7 @@ class ProductSearchView extends BaseView<ProductSearchController> {
                     height: 14,
                     width: 19,
                     child: AssetImageView(
-                      fileName: 'ic_menu.svg',
+                      fileName: AppAssets.icMenu,
                       fit: BoxFit.contain,
                       color: Color(0xFF222455),
                     ),

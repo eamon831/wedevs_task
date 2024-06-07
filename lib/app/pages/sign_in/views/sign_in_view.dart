@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '/app/core/base/base_view.dart';
+import '/app/core/values/app_assets.dart';
 import '/app/core/values/text_styles.dart';
 import '/app/core/widget/asset_image_view.dart';
 import '/app/core/widget/base_button.dart';
@@ -31,7 +32,7 @@ class SignInView extends BaseView<SignInController> {
           83.height,
           const Center(
             child: AssetImageView(
-              fileName: 'app_logo.svg',
+              fileName: AppAssets.appLogo,
             ),
           ),
           83.height,
@@ -46,7 +47,7 @@ class SignInView extends BaseView<SignInController> {
             controller: controller.userNameController,
             hintText: appLocalization.email,
             validator: noValidator,
-            prefix: 'ic_email.svg',
+            prefix: AppAssets.icEmail,
           ),
           19.height,
           Obx(
@@ -56,7 +57,7 @@ class SignInView extends BaseView<SignInController> {
                 hintText: appLocalization.password,
                 validator: noValidator,
                 obscureText: !controller.showPassword.value,
-                prefix: 'ic_password.svg',
+                prefix: AppAssets.icPassword,
                 suffix: IconButton(
                   icon: Icon(
                     controller.showPassword.value
@@ -92,14 +93,14 @@ class SignInView extends BaseView<SignInController> {
               InkWell(
                 onTap: controller.signInWithFacebook,
                 child: const AssetImageView(
-                  fileName: 'ic_facebook.svg',
+                  fileName: AppAssets.icFacebook,
                 ),
               ),
               14.width,
               InkWell(
                 onTap: controller.signInWithGoogle,
                 child: const AssetImageView(
-                  fileName: 'ic_google.png',
+                  fileName: AppAssets.icGoogle,
                 ),
               ),
             ],

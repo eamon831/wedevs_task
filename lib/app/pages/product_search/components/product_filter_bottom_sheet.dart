@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:wedevs_task/app/core/values/app_assets.dart';
 import 'package:wedevs_task/app/core/widget/asset_image_view.dart';
 import 'package:wedevs_task/app/core/widget/base_button.dart';
 
@@ -165,7 +166,8 @@ class ProductFilterBottomSheet extends StatelessWidget {
         child: Row(
           children: [
             AssetImageView(
-              fileName: isSelected ? 'ic_selected.svg' : 'ic_unselected.svg',
+              fileName:
+                  isSelected ? AppAssets.icSelected : AppAssets.icUnselected,
               height: 24,
               width: 24,
             ),
