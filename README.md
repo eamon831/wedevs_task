@@ -214,3 +214,34 @@ This project uses **GetX** for state management. The relevant files are located 
 
 - **[get](https://pub.dev/packages/get)**: State management library for Flutter with a focus on simplicity and performance.
 - **[nb_utils](https://pub.dev/packages/nb_utils)**: A package for common utility methods and widgets.
+- **[dio](https://pub.dev/packages/dio)**: A powerful Http client for Dart, which supports Interceptors, Global configuration, FormData, Request Cancellation, File downloading, Timeout etc.
+- **[flutter_svg](https://pub.dev/packages/flutter_svg)**: A package to render SVG files in Flutter.
+- **[flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)**: A staggered grid view for Flutter.
+
+## Features
+
+- **Sign In**: Users can sign in to the app using their email and password.
+- **Sign Up**: Users can sign up for the app using their email and password.
+- **Home**: Home page is empty for now.
+- **Category**: Category page is empty for now.
+- **Product List**: Product list page where users can see the list of products. can filter the products by 5 different types filter.
+- **Cart**: Cart page is empty for now.
+- **Profile**: Profile page where users can see their profile information. user can update first name and last name.Change language from the profile page.
+
+
+## Screenshots EN
+![sign_in_en](sign_in_en.png)
+![sign_up_en](sign_up_en.png)
+![product_list_en](product_list_en.png)
+![product_filter_en](product_list_filter_en.png)
+![profile_en](profile_en.png)
+
+## Screenshots BN
+![sign_in_bn](sign_in_bn.png)
+![sign_up_bn](sign_up_bn.png)
+![product_list_bn](product_list_bn.png)
+![product_filter_bn](product_list_filter_bn.png)
+![profile_bn](profile_bn.png)
+
+
+
