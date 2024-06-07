@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -93,7 +91,9 @@ class ProductSearchView extends BaseView<ProductSearchController> {
                       child: Text(
                         controller.selectedFilter.value == null
                             ? appLocalization.filter
-                            : controller.selectedFilter.value!,
+                            : controller.translateFilter(
+                                controller.selectedFilter.value!,
+                              ),
                         style: GoogleFonts.lato(
                           color: const Color(0xFF818995),
                           fontSize: 15.63,

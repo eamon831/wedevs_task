@@ -16,7 +16,11 @@ enum FilterType {
 }
 
 class ProductFilterBottomSheet extends StatelessWidget {
-  ProductFilterBottomSheet({super.key});
+  final FilterType? filterType;
+  ProductFilterBottomSheet({
+    super.key,
+    this.filterType,
+  });
   AppLocalizations get appLocalization => AppLocalizations.of(Get.context!)!;
 
   final selectedFilter = Rx<List<FilterType>>([]);
@@ -35,6 +39,9 @@ class ProductFilterBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (filterType != null) {
+      selectedFilter.value.add(filterType!);
+    }
     return Container(
       padding: const EdgeInsets.only(left: 22),
       decoration: const BoxDecoration(

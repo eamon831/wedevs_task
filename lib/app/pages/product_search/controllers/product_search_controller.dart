@@ -8,7 +8,7 @@ import '../components/product_filter_bottom_sheet.dart';
 
 class ProductSearchController extends BaseController {
   final products = Rx<List<Product>?>(null);
-  final selectedFilter = Rx<String?>(null);
+  final selectedFilter = Rx<FilterType?>(null);
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -27,42 +27,55 @@ class ProductSearchController extends BaseController {
     );
   }
 
+  String translateFilter(FilterType filter) {
+    switch (filter) {
+      case FilterType.newest:
+        return appLocalization.newest;
+      case FilterType.oldest:
+        return appLocalization.oldest;
+      case FilterType.priceLowToHigh:
+        return appLocalization.priceLowToHigh;
+      case FilterType.priceHighToLow:
+        return appLocalization.priceHighToLow;
+      case FilterType.bestSelling:
+        return appLocalization.bestSelling;
+    }
+  }
+
   Future<void> filterProducts(BuildContext context) async {
     final result = await Get.bottomSheet(
-      ProductFilterBottomSheet(),
+      ProductFilterBottomSheet(
+        filterType: selectedFilter.value,
+      ),
     );
     if (result != null) {
       // this is supposed to be a api based filter but we don't have the api
       // so we are just filtering the list locally
 
       final FilterType filter = result[0];
+      selectedFilter.value = filter;
 
       if (filter == FilterType.newest) {
-        selectedFilter.value = appLocalization.newest;
         products.value!.sort(
           (a, b) => a.dateCreated!.compareTo(b.dateCreated!),
         );
       }
       if (filter == FilterType.oldest) {
-        selectedFilter.value = appLocalization.oldest;
         products.value!.sort(
           (a, b) => b.dateCreated!.compareTo(a.dateCreated!),
         );
       }
       if (filter == FilterType.priceLowToHigh) {
-        selectedFilter.value = appLocalization.priceLowToHigh;
         products.value!.sort(
           (a, b) => a.price!.toDouble().compareTo(b.price!.toDouble()),
         );
       }
       if (filter == FilterType.priceHighToLow) {
-        selectedFilter.value = appLocalization.priceHighToLow;
         products.value!.sort(
           (a, b) => b.price!.toDouble().compareTo(a.price!.toDouble()),
         );
       }
       if (filter == FilterType.bestSelling) {
-        selectedFilter.value = appLocalization.bestSelling;
         products.value!.sort(
           (a, b) => a.totalSales!.compareTo(b.totalSales!),
         );
@@ -71,7 +84,8 @@ class ProductSearchController extends BaseController {
 
       products.refresh();
     } else {
-      fetchProducts();
+      selectedFilter.value = null;
+      await fetchProducts();
     }
   }
 }
