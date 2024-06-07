@@ -57,6 +57,7 @@ The project follows a modular structure, and key components are organized as fol
 │   │       ├── app_bar_title.dart
 │   │       ├── asset_image_view.dart
 │   │       ├── base_button.dart
+│   │       ├── common_cache_image_widget.dart
 │   │       ├── custom_app_bar.dart
 │   │       ├── dialog_pattern.dart
 │   │       ├── elevated_container.dart
@@ -66,13 +67,6 @@ The project follows a modular structure, and key components are organized as fol
 │   │       ├── paging_view.dart
 │   │       ├── ripple.dart
 │   │       └── text_form_field_widget.dart
-│   ├── data
-│   │   ├── local
-│   │   │   ├── db
-│   │   │   └── preference
-│   │   │       ├── preference_manager.dart
-│   │   │       └── preference_manager_impl.dart
-│   │   └── remote
 │   ├── model
 │   │   ├── address.dart
 │   │   ├── category.dart
@@ -192,7 +186,7 @@ The project follows a modular structure, and key components are organized as fol
 │   ├── app_bn.arb
 │   └── app_en.arb
 ├── main_dev.dart
-└── main_prod.dar
+└── main_prod.dart
  ```
 ## State Management
 
