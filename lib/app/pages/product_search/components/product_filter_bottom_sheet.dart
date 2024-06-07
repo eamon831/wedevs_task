@@ -21,9 +21,14 @@ class ProductFilterBottomSheet extends StatelessWidget {
   final selectedFilter = Rx<List<FilterType>>([]);
 
   void _toggleFilter(FilterType filter) {
-    selectedFilter.value.contains(filter)
+    selectedFilter.value.clear();
+    selectedFilter.value.add(filter);
+
+    // for multiple selection use this
+    /*  selectedFilter.value.contains(filter)
         ? selectedFilter.value.remove(filter)
-        : selectedFilter.value.add(filter);
+        : selectedFilter.value.add(filter);*/
+
     selectedFilter.refresh();
   }
 
