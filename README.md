@@ -219,7 +219,7 @@ This project uses **GetX** for state management. The relevant files are located 
 - **[flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)**: A staggered grid view for Flutter.
 
 ## Features
-
+- **Localization**: The app supports localization in English and Bengali.
 - **Sign In**: Users can sign in to the app using their email and password.
 - **Sign Up**: Users can sign up for the app using their email and password.
 - **Home**: Home page is empty for now.
