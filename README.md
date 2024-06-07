@@ -23,7 +23,7 @@ then run the project from the terminal by running the command "flutter run  lib/
 
 The project follows a modular structure, and key components are organized as follows:
 
-    ```bash
+```bash
 ├── app
 │   ├── bindings
 │   │   └── initial_binding.dart
@@ -190,7 +190,5 @@ The project follows a modular structure, and key components are organized as fol
 │   ├── app_bn.arb
 │   └── app_en.arb
 ├── main_dev.dart
-└── main_prod.dart
-
-
-    ```
+└── main_prod.dar
+ ```
