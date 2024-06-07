@@ -165,6 +165,16 @@ class ProfileView extends BaseView<ProfileController> {
                     color: const Color(0xFF000000),
                   ),
                 ),
+                if (element.profileButtonEnum == ProfileButtonEnum.wishlist)
+                  Text(
+                    ' (00)',
+                    style: titleStyle.copyWith(
+                      fontSize: 17.36,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Roboto',
+                      color: const Color(0xFF7c8592),
+                    ),
+                  ),
                 const Spacer(),
                 Obx(
                   () {
